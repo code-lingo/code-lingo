@@ -1,5 +1,7 @@
-#Codelingo
-###a code-learning app
+# Codelingo
+
+### a code-learning app
+
 _This document describes our team social contract for this project_
 Reference Establishing Norms
 **Roles**
