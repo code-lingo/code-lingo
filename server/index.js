@@ -4,7 +4,7 @@ const path = require('path')
 const port = 7545 || process.env.PORT
 const app = express()
 const firebase = require('firebase-admin')
-const serviceAccount = require('../serviceAccountKey.json')
+const serviceAccount = require('../firebaseAccountKey.json')
 
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
