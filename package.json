@@ -22,7 +22,7 @@
     "start-dev": "npm run build -w && npm run server ",
     "server": "node server/index.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
