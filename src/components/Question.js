@@ -1,73 +1,45 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchLevelQuestions } from '../store'
+import MultipleChoice from './MultipleChoice'
 
 class Question extends Component {
   constructor() {
     super()
     this.state = {
-      selectedAnswer: {}
+      currentQuestion: 0,
+      answers: []
     }
-
-    this.selectAnswer = this.selectAnswer.bind(this)
-    this.submitAnswer = this.submitAnswer.bind(this)
+    this.answerQuestion = this.answerQuestion.bind(this)
   }
 
   componentDidMount() {
     this.props.getQuestions('level1')
   }
 
-  selectAnswer(answer) {
-    const selectedAnswer = answer
-    this.setState({ selectedAnswer })
+  answerQuestion(answer) {
+    this.setState({
+      currentQuestion: this.state.currentQuestion + 1,
+      answers: [...this.state.answers, answer]
+    })
   }
-
-  submitAnswer() {
-    // TODO: when user clicks continue, we render the next question
-    if (this.state.selectedAnswer.isCorrect) {
-      console.log('you got it right!')
-    } else {
-      console.log('womp womp!')
-    }
-  }
-
-  // TODO: update users progress
-  // isLevelComplete() {
-  // const userId = this.props.currentUser
-  // database.ref('users/' + userId + '/progress')
-  // }
 
   render() {
-    if (!this.props.questions[0]) {
+    const questions = this.props.questions
+    const question = questions[this.state.currentQuestion]
+
+
+
+    if (typeof question === 'object' && question.type === 'multipleChoice') {
+      return (
+        <MultipleChoice
+          question={question}
+          answerQuestion={this.answerQuestion}
+        />
+      )
+    } else {
       return null
     }
-    const question = this.props.questions[0].description
-    const answers = Object.values(this.props.questions[0]).filter(a =>
-      a.hasOwnProperty('isCorrect')
-    )
-
-    return (
-      <div>
-        <div>{question}</div>
-        <div>
-          {answers.map((el, index) => {
-            return (
-              <div key={index}>
-                <button onClick={() => this.selectAnswer(el)}>{el.val}</button>
-              </div>
-            )
-          })}
-        </div>
-        <button
-          disabled={
-            this.state.selectedAnswer.hasOwnProperty('isCorrect') ? false : true
-          }
-          onClick={this.submitAnswer}
-        >
-          Continue
-        </button>
-      </div>
-    )
   }
 }
 

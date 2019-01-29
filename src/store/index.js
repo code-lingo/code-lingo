@@ -32,9 +32,8 @@ export const fetchLevelQuestions = levelId => {
             let data = snapshot.val();
             const result = Object.keys(data)
               .map(el => data[el])
-              .sort((a, b) => a.id - b.id);
-            console.log(result);
-            dispatch(getLevelQuestions(result));
+              .sort((a, b) => a.id - b.id)
+            dispatch(getLevelQuestions(result))
           }
         })
         .catch(error => console.log(error));
