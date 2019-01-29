@@ -1,8 +1,10 @@
 import React from 'react';
 import { auth, database } from '../configs/firebase_init';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getCurrentUser } from '../store';
 
-export default class SingUp extends React.Component {
+class SignUp extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -48,6 +50,7 @@ export default class SingUp extends React.Component {
         password
       );
       await this.createUser(validUser.user, email, username);
+      this.props.getUser(validUser.user.uid);
       this.setState({ username: '', email: '', password: '' });
       this.props.history.push('/');
     } catch (error) {
@@ -115,3 +118,16 @@ export default class SingUp extends React.Component {
     );
   }
 }
+
+const mapToState = state => ({
+  currentUser: state.currentUser,
+});
+
+const mapToDispatch = dispatch => ({
+  getUser: id => dispatch(getCurrentUser(id)),
+});
+
+export default connect(
+  mapToState,
+  mapToDispatch
+)(SignUp);
