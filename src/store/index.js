@@ -16,21 +16,20 @@ export const getCurrentUser = uid => ({
 
 //THUNK
 export const fetchLevelQuestions = levelId => {
-  console.log(levelId);
   return async dispatch => {
     try {
       database
         .ref('levels/')
         .child(levelId)
         .once('value', snapshot => {
-          console.log('hello');
           const exists = snapshot.val() !== null;
           if (exists) {
             let data = snapshot.val();
-            //   let results = Object.keys(data).map(key => data[key])
-            const result = Object.keys(data).map(el => data[el]);
-            console.log('DATA TEST QS LVL 1', result);
-            dispatch(getLevelQuestions(data));
+            const result = Object.keys(data)
+              .map(el => data[el])
+              .sort((a, b) => a.id - b.id);
+            console.log(result);
+            dispatch(getLevelQuestions(result));
           }
         })
         .catch(error => console.log(error));
