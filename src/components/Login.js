@@ -1,12 +1,16 @@
 import React from 'react';
 import { auth } from '../configs/firebase_init';
+import { connect } from 'react-redux';
+import { getCurrentUser } from '../store';
+import { Link } from 'react-router-dom';
 
-export default class SingUp extends React.Component {
+class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       email: '',
       password: '',
+      errorMessage: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -18,46 +22,77 @@ export default class SingUp extends React.Component {
     });
   }
 
-  handleLogin(event) {
+  async handleLogin(event) {
     const { email, password } = this.state;
     event.preventDefault();
 
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then(userObj =>
-        console.log(
-          'This is the user id of successfuly logged in user',
-          userObj.user.uid
-        )
-      )
-      .catch(error => this.setState({ errorMessage: error.errorMessage }));
+    try {
+      const validUser = await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: '', password: '' });
+      this.props.getUser(validUser.user.uid);
+      this.props.history.push('/');
+    } catch (error) {
+      this.setState({
+        email: '',
+        password: '',
+        errorMessage:
+          'Email or Password is incorrect, please try logging in again',
+      });
+    }
   }
   render() {
     return (
       <div>
-        <h2>Login</h2>
-        <form onSubmit={this.handleLogin}>
-          <label>
+        <h2 className="auth-method">Login</h2>
+        {this.state.errorMessage && (
+          <p className="auth-error-message">{this.state.errorMessage}</p>
+        )}
+        <form className="auth-form" onSubmit={this.handleLogin}>
+          <label className="auth-label">
             Email:
             <input
-              type="text"
+              required
+              className="auth-input"
+              type="email"
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
+              placeholder="Input your email"
             />
           </label>
-          <label>
+          <label className="auth-label">
             Password:
             <input
-              type="text"
+              required
+              className="auth-input"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
+              placeholder="Input your password"
             />
           </label>
-          <button type="submit">Login</button>
+          <button className="auth-button" type="submit">
+            Login
+          </button>
+          <Link className="auth-redirect-link" to="/signup">
+            Don't have an account, Sign Up here!
+          </Link>
         </form>
       </div>
     );
   }
 }
+
+const mapToState = state => ({
+  currentUser: state.currentUser,
+});
+
+const mapToDispatch = dispatch => ({
+  getUser: id => dispatch(getCurrentUser(id)),
+});
+
+export default connect(
+  mapToState,
+  mapToDispatch
+)(Login);
