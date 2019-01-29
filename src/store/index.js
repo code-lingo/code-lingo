@@ -53,7 +53,7 @@ const initialState = {
  * REDUCER
  */
 
-const user = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CURRENT_LEVEL_QUESTIONS:
       return { ...state, currentLevelQuestions: action.level };
@@ -66,4 +66,4 @@ const user = (state = initialState, action) => {
   }
 };
 
-export default createStore(user, applyMiddleware(ThunkMiddleware));
+export default createStore(reducer, applyMiddleware(ThunkMiddleware));
