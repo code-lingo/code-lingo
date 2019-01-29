@@ -3,10 +3,15 @@ import ThunkMiddleware from 'redux-thunk';
 import { database } from '../configs/firebase_init';
 
 const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
+const GET_CURRENT_USER = 'GET_CURRENT_USER';
 
 export const getLevelQuestions = level => ({
   type: GET_CURRENT_LEVEL_QUESTIONS,
   level,
+});
+export const getCurrentUser = uid => ({
+  type: GET_CURRENT_USER,
+  uid,
 });
 
 //THUNK
@@ -37,6 +42,7 @@ export const fetchLevelQuestions = levelId => {
 
 const initialState = {
   currentLevelQuestions: {},
+  currentUser: '',
 };
 
 /**
@@ -47,6 +53,8 @@ const user = (state = initialState, action) => {
   switch (action.type) {
     case GET_CURRENT_LEVEL_QUESTIONS:
       return { ...state, currentLevelQuestions: action.level };
+    case GET_CURRENT_USER:
+      return { ...state, currentUser: action.uid };
     default:
       return state;
   }
