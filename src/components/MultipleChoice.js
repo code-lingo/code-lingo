@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import { connect } from 'react-redux';
 // import { fetchLevelQuestions } from '../store';
 
 export default class MultipleChoice extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       selectedAnswer: {}
-    };
+    }
 
-    this.selectAnswer = this.selectAnswer.bind(this);
-    this.submitAnswer = this.submitAnswer.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  selectAnswer(answer) {
-    const selectedAnswer = answer;
-    this.setState({ selectedAnswer });
+  handleChange(evt) {
+    const selectedAnswer = evt
+    this.setState({ selectedAnswer })
   }
 
-  submitAnswer() {
-    // TODO: when user clicks continue, we render the next question
+  handleSubmit(evt) {
+    evt.preventDefault()
     if (this.state.selectedAnswer.isCorrect) {
       console.log('you got it right!');
     } else {
       console.log('womp womp!');
     }
+    this.props.answerQuestion(this.state.selectedAnswer.isCorrect)
+    this.setState({
+      selectedAnswer: {}
+    })
   }
 
-  // TODO: update users progress
-  // isLevelComplete() {
-  // const userId = this.props.currentUser
-  // database.ref('users/' + userId + '/progress')
-  // }
-
   render() {
-
     const question = this.props.question
 
-    const answers = Object.values(question)
-      .filter(a => a.hasOwnProperty('isCorrect'));
+    const answers = Object.values(question).filter(a =>
+      a.hasOwnProperty('isCorrect')
+    )
 
     return (
       <div>
@@ -47,22 +45,20 @@ export default class MultipleChoice extends Component {
           {answers.map((el, index) => {
             return (
               <div key={index}>
-                <button onClick={() => this.selectAnswer(el)}>{el.val}</button>
+                <button onClick={() => this.handleChange(el)}>{el.val}</button>
               </div>
-            );
+            )
           })}
         </div>
         <button
           disabled={
             this.state.selectedAnswer.hasOwnProperty('isCorrect') ? false : true
           }
-          onClick={this.props.answerQuestion}
+          onClick={this.handleSubmit}
         >
           Continue
         </button>
       </div>
-    );
+    )
   }
 }
-
-
