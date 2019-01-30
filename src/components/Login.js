@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../configs/firebase_init';
+import { f, auth } from '../configs/firebase_init';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store';
 import { Link } from 'react-router-dom';
@@ -25,13 +25,34 @@ class Login extends React.Component {
   async handleLogin(event) {
     const { email, password } = this.state;
     event.preventDefault();
+    // f.auth()
+    //   .setPersistence(f.auth.Auth.Persistence.LOCAL)
+    //   .then(() => {
+    //     f.auth()
+    //       .signInWithEmailAndPassword(email, password)
+    //       .then(validUser => {
+    //         console.log('HELLO FROM AUTHENTICATION');
+    //         this.setState({ email: '', password: '' });
+    //         this.props.getUser(validUser.user.uid);
+    //         this.props.history.push('/');
+    //       })
+    //       .catch(error => console.log('ERROR MESSAGE:', error));
+    //   })
+    //   .catch(function(error) {
+    //     console.log('ERROR MESSAGE:', error);
+    //   });
 
     try {
+      await f.auth().setPersistence(f.auth.Auth.Persistence.SESSION);
+      console.log('BEFORE USER LOGS IN');
       const validUser = await auth.signInWithEmailAndPassword(email, password);
+      console.log('HELLO FROM AUTHENTICATION');
       this.setState({ email: '', password: '' });
       this.props.getUser(validUser.user.uid);
+      console.log('HELLO FROM AUTHENTICATION:', validUser.user.uid);
       this.props.history.push('/');
     } catch (error) {
+      console.log('USER WAS UNABLE TO SIGN IN', error);
       this.setState({
         email: '',
         password: '',
@@ -40,6 +61,7 @@ class Login extends React.Component {
       });
     }
   }
+
   render() {
     return (
       <div>

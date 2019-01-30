@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, Link } from 'react-router-dom';
+import { f } from './configs/firebase_init';
 
 import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
