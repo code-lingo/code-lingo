@@ -6,3 +6,5 @@ export const config = {
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
 };
+
+// updated travis with the ENV variables
