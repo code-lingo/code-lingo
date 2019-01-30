@@ -1,5 +1,6 @@
 import React from 'react';
 import { f, auth } from '../configs/firebase_init';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store';
 import { Link, Redirect } from 'react-router-dom';
@@ -93,7 +94,9 @@ const mapToDispatch = dispatch => ({
   getUser: id => dispatch(getCurrentUser(id)),
 });
 
-export default connect(
-  mapToState,
-  mapToDispatch
-)(Login);
+export default withRouter(
+  connect(
+    mapToState,
+    mapToDispatch
+  )(Login)
+);

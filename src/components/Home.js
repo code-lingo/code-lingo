@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
   render() {
@@ -22,4 +23,4 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-export default connect(mapToState)(Home);
+export default withRouter(connect(mapToState)(Home));
