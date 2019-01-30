@@ -42,7 +42,6 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/register": "^7.0.0",
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "webpack": "^4.29.0"
+    "babel-preset-env": "^1.7.0"
   }
 }

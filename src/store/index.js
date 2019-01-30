@@ -4,13 +4,13 @@ import loggingMiddleware from 'redux-logger'; // https://github.com/evgenyrodion
 
 import { database, auth } from '../configs/firebase_init';
 
-const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
+export const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
 const LOG_OUT_USER = 'LOG_OUT_USER';
 
-export const getLevelQuestions = level => ({
+export const getLevelQuestions = questions => ({
   type: GET_CURRENT_LEVEL_QUESTIONS,
-  level,
+  questions,
 });
 export const getCurrentUser = uid => ({
   type: GET_CURRENT_USER,
@@ -46,7 +46,7 @@ export const fetchLevelQuestions = levelId => {
 };
 
 const initialState = {
-  currentLevelQuestions: {},
+  currentLevelQuestions: [],
   currentUser: '',
 };
 
@@ -57,7 +57,7 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CURRENT_LEVEL_QUESTIONS:
-      return { ...state, currentLevelQuestions: action.level };
+      return { ...state, currentLevelQuestions: action.questions };
     case GET_CURRENT_USER:
       return { ...state, currentUser: action.uid };
     case LOG_OUT_USER:

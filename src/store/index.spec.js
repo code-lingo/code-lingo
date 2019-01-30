@@ -1,7 +1,8 @@
 'use strict';
-import GET_CURRENT_LEVEL_QUESTIONS from './index';
-import reducer from './index';
-import getLevelQuestions from './index';
+
+import { GET_CURRENT_LEVEL_QUESTIONS } from './index';
+import { reducer } from './index';
+// import getLevelQuestions from './index';
 
 // Assertions
 const chai = require('chai');
@@ -57,35 +58,37 @@ describe('Store', () => {
       });
     });
 
-    describe('Reducer', () => {
+    describe('Current Level Questions Reducer', () => {
       const initialState = {
-        currentLevelQuestions: {},
+        currentLevelQuestions: [],
         currentUser: '',
       };
 
+      const result = Object.keys(dataFromFirebase)
+        .map(el => dataFromFirebase[el])
+        .sort((a, b) => a.id - b.id);
+
       const newState = reducer(initialState, {
-        type: GET_CURRENT_LEVEL_QUESTIONS,
-        level: 'level1',
+        type: 'GET_CURRENT_LEVEL_QUESTIONS',
+        questions: result,
       });
 
       it('returns a new state with questions fetched from "database" ', () => {
         expect(newState.currentLevelQuestions).to.have.length(2);
       });
-    });
 
-    it('returns a new state with the updated `questions`', () => {
-      // this should have changed:
-      expect(newState.campuses).to.deep.equal(campuses);
-      // this should not have changed:
-      expect(newState.selectedCampus).to.equal(initialState.selectedCampus);
-      expect(newState.students).to.equal(initialState.students);
-    });
+      it('returns a new state with the updated ` current level questions`', () => {
+        // this should have changed:
+        expect(newState.currentLevelQuestions).to.deep.equal(result);
+        // this should not have changed:
+        expect(newState.currentUser).to.equal(initialState.currentUser);
+      });
 
-    it('does not modify the previous state', () => {
-      expect(initialState).to.deep.equal({
-        campuses: [],
-        selectedCampus: {},
-        students: [],
+      it('does not modify the previous state', () => {
+        expect(initialState).to.deep.equal({
+          currentLevelQuestions: [],
+          currentUser: '',
+        });
       });
     });
   });
