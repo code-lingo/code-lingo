@@ -11,9 +11,19 @@ class Home extends Component {
       return <Redirect to="/login" />;
     }
     return (
-      <div className="App">
-        <h1>You've reached the Home Component</h1>
-        <Link to="/questions">Want to start playing? Click here!</Link>
+      <div className="home">
+        <div class="level-selector">
+          <Link to="/questions/level1">
+            <img
+              class="game-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png"
+              alt="Level One"
+            />{' '}
+          </Link>
+          <Link to="/questions/level1">
+            <h3>Level One</h3>
+          </Link>
+        </div>
       </div>
     );
   }
