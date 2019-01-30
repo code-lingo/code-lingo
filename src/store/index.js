@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
-import loggingMiddleware from 'redux-logger'; // https://github.com/evgenyrodionov/redux-logger
+import loggingMiddleware from 'redux-logger';
 
-import { database, auth } from '../configs/firebase_init';
+import { database } from '../configs/firebase_init';
 
 export const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
