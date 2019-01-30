@@ -26,6 +26,9 @@ export default class MultipleChoice extends Component {
       console.log('womp womp!');
     }
     this.props.answerQuestion(this.state.selectedAnswer.isCorrect)
+    this.setState({
+      selectedAnswer: {}
+    })
   }
 
   render() {
