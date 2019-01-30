@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
   render() {
-    console.log('COMING FROM HOME');
     if (!this.props.currentUser) {
       return <Redirect to="/login" />;
     }
     return (
       <div className="home">
-        <div class="level-selector">
+        <div className="level-selector">
           <Link to="/questions/level1">
             <img
-              class="game-icon"
+              className="game-icon"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png"
               alt="Level One"
             />{' '}
@@ -33,4 +32,4 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-export default withRouter(connect(mapToState)(Home));
+export default connect(mapToState)(Home);

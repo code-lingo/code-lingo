@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import { auth } from './configs/firebase_init';
-import { connect } from 'react-redux';
-import { getCurrentUser } from './store';
+// import { withRouter } from 'react-router-dom';
+// import { auth } from './configs/firebase_init';
+// import { connect } from 'react-redux';
+// import { getCurrentUser } from './store';
 
 import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
@@ -13,13 +13,13 @@ import Question from './components/Question';
 import Home from './components/Home';
 
 class App extends Component {
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.props.getUser(user.uid);
-      }
-    });
-  }
+  // componentDidMount() {
+  //   auth.onAuthStateChanged(user => {
+  //     if (user) {
+  //       this.props.getUser(user.uid);
+  //     }
+  //   });
+  // }
 
   render() {
     return (
@@ -38,17 +38,12 @@ class App extends Component {
   }
 }
 
-const mapToState = state => ({
-  currentUser: state.currentUser,
-});
+// const mapToState = state => ({
+//   currentUser: state.currentUser,
+// });
 
-const mapToDispatch = dispatch => ({
-  getUser: user => dispatch(getCurrentUser(user)),
-});
+// const mapToDispatch = dispatch => ({
+//   getUser: user => dispatch(getCurrentUser(user)),
+// });
 
-export default withRouter(
-  connect(
-    mapToState,
-    mapToDispatch
-  )(App)
-);
+export default App;

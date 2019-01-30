@@ -1,9 +1,9 @@
 import React from 'react';
-import { f, auth } from '../configs/firebase_init';
-import { withRouter } from 'react-router-dom';
+import { auth } from '../configs/firebase_init';
+// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor() {
@@ -17,6 +17,14 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.props.getUser(user.uid);
+      }
+    });
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -27,7 +35,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     event.preventDefault();
     try {
-      await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
+      // await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
       const validUser = await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: '', password: '' });
       this.props.getUser(validUser.user.uid);
@@ -94,9 +102,7 @@ const mapToDispatch = dispatch => ({
   getUser: id => dispatch(getCurrentUser(id)),
 });
 
-export default withRouter(
-  connect(
-    mapToState,
-    mapToDispatch
-  )(Login)
-);
+export default connect(
+  mapToState,
+  mapToDispatch
+)(Login);
