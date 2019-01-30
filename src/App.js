@@ -13,11 +13,11 @@ import Home from './components/Home';
 
 class App extends Component {
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.props.getUser(user.uid);
-      }
-    });
+    // auth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     this.props.getUser(user.uid);
+    //   }
+    // });
   }
 
   render() {

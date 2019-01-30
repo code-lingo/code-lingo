@@ -42,10 +42,6 @@ class Login extends React.Component {
   }
 
   render() {
-    // if (this.props.currentUser) {
-    //   return <Redirect to="/" />;
-    // }
-
     return (
       <div>
         <h2 className="auth-method">Login</h2>
