@@ -34,7 +34,7 @@ class Question extends Component {
 
     if (
       typeof question === 'object' &&
-      (question.type === 'multipleChoice')
+      (question.type === 'multipleChoice' || question.type === 'trueOrFalse')
     ) {
       return (
         <div>
@@ -49,7 +49,10 @@ class Question extends Component {
       return (
         <div>
           <ProgressBar progress={this.state.percentage} />
-          <InfoCard />
+          <InfoCard
+            question={question}
+            answerQuestion={this.answerQuestion}
+          />
         </div>
       )
     } else {
