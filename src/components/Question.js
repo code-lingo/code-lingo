@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchLevelQuestions } from '../store';
 import MultipleChoice from './MultipleChoice';
 
 // comment for commit
+=======
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchLevelQuestions } from '../store'
+import MultipleChoice from './MultipleChoice'
+import ProgressBar from './ProgressBar/ProgressBar'
+>>>>>>> master
 
 class Question extends Component {
   constructor() {
@@ -11,8 +19,14 @@ class Question extends Component {
     this.state = {
       currentQuestion: 0,
       answers: [],
+<<<<<<< HEAD
     };
     this.answerQuestion = this.answerQuestion.bind(this);
+=======
+      percentage: 0
+    }
+    this.answerQuestion = this.answerQuestion.bind(this)
+>>>>>>> master
   }
 
   componentDidMount() {
@@ -23,6 +37,7 @@ class Question extends Component {
     this.setState({
       currentQuestion: this.state.currentQuestion + 1,
       answers: [...this.state.answers, answer],
+<<<<<<< HEAD
     });
   }
 
@@ -37,6 +52,26 @@ class Question extends Component {
           answerQuestion={this.answerQuestion}
         />
       );
+=======
+      percentage: this.state.percentage + 20
+    })
+  }
+
+  render() {
+    const questions = this.props.questions
+    const question = questions[this.state.currentQuestion]
+
+    if (typeof question === 'object' && question.type === 'multipleChoice') {
+      return (
+        <div>
+          <ProgressBar progress={this.state.percentage} />
+          <MultipleChoice
+            question={question}
+            answerQuestion={this.answerQuestion}
+          />
+        </div>
+      )
+>>>>>>> master
     } else {
       return null;
     }
