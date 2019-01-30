@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchLevelQuestions } from '../store'
 import MultipleChoice from './MultipleChoice'
 import ProgressBar from './ProgressBar/ProgressBar'
+import InfoCard from './InfoCard'
 
 class Question extends Component {
   constructor() {
@@ -31,7 +32,10 @@ class Question extends Component {
     const questions = this.props.questions
     const question = questions[this.state.currentQuestion]
 
-    if (typeof question === 'object' && question.type === 'multipleChoice') {
+    if (
+      typeof question === 'object' &&
+      (question.type === 'multipleChoice')
+    ) {
       return (
         <div>
           <ProgressBar progress={this.state.percentage} />
@@ -39,6 +43,13 @@ class Question extends Component {
             question={question}
             answerQuestion={this.answerQuestion}
           />
+        </div>
+      )
+    } else if (typeof question === 'object' && question.type === 'infoCard') {
+      return (
+        <div>
+          <ProgressBar progress={this.state.percentage} />
+          <InfoCard />
         </div>
       )
     } else {

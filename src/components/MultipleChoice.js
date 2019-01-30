@@ -1,64 +1,34 @@
-import React, { Component } from 'react'
-// import { connect } from 'react-redux';
-// import { fetchLevelQuestions } from '../store';
+import React from 'react'
+import QuestionCreator from './QuestionCreator'
 
-export default class MultipleChoice extends Component {
-  constructor() {
-    super()
-    this.state = {
-      selectedAnswer: {}
-    }
+const MultipleChoice = props => {
+  const question = props.question
+  const answers = Object.values(question).filter(a =>
+    a.hasOwnProperty('isCorrect')
+  )
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange(evt) {
-    const selectedAnswer = evt
-    this.setState({ selectedAnswer })
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault()
-    if (this.state.selectedAnswer.isCorrect) {
-      console.log('you got it right!');
-    } else {
-      console.log('womp womp!');
-    }
-    this.props.answerQuestion(this.state.selectedAnswer.isCorrect)
-    this.setState({
-      selectedAnswer: {}
-    })
-  }
-
-  render() {
-    const question = this.props.question
-
-    const answers = Object.values(question).filter(a =>
-      a.hasOwnProperty('isCorrect')
-    )
-
-    return (
+  return (
+    <div>
+      <div>{question.description}</div>
       <div>
-        <div>{question.description}</div>
-        <div>
-          {answers.map((el, index) => {
-            return (
-              <div key={index}>
-                <button onClick={() => this.handleChange(el)}>{el.val}</button>
-              </div>
-            )
-          })}
-        </div>
-        <button
-          disabled={
-            this.state.selectedAnswer.hasOwnProperty('isCorrect') ? false : true
-          }
-          onClick={this.handleSubmit}
-        >
-          Continue
-        </button>
+        {answers.map((el, index) => {
+          return (
+            <div key={index}>
+              <button onClick={() => props.handleChange(el)}>{el.val}</button>
+            </div>
+          )
+        })}
       </div>
-    )
-  }
+      <button
+        disabled={
+          props.selectedAnswer.hasOwnProperty('isCorrect') ? false : true
+        }
+        onClick={props.handleSubmit}
+      >
+        Continue
+      </button>
+    </div>
+  )
 }
+
+export default QuestionCreator(MultipleChoice)
