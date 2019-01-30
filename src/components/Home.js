@@ -5,6 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 class Home extends Component {
   render() {
+    console.log('COMING FROM HOME');
     if (!this.props.currentUser) {
       return <Redirect to="/login" />;
     }

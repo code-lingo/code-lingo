@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import { auth } from './configs/firebase_init';
+import { connect } from 'react-redux';
+import { getCurrentUser } from './store';
 
 import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
@@ -9,6 +12,14 @@ import Question from './components/Question';
 import Home from './components/Home';
 
 class App extends Component {
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.props.getUser(user.uid);
+      }
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -26,4 +37,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapToState = state => ({
+  currentUser: state.currentUser,
+});
+
+const mapToDispatch = dispatch => ({
+  getUser: user => dispatch(getCurrentUser(user)),
+});
+
+export default connect(
+  mapToState,
+  mapToDispatch
+)(App);

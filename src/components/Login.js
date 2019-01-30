@@ -2,7 +2,7 @@ import React from 'react';
 import { f, auth } from '../configs/firebase_init';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor() {
@@ -25,34 +25,13 @@ class Login extends React.Component {
   async handleLogin(event) {
     const { email, password } = this.state;
     event.preventDefault();
-    // f.auth()
-    //   .setPersistence(f.auth.Auth.Persistence.LOCAL)
-    //   .then(() => {
-    //     f.auth()
-    //       .signInWithEmailAndPassword(email, password)
-    //       .then(validUser => {
-    //         console.log('HELLO FROM AUTHENTICATION');
-    //         this.setState({ email: '', password: '' });
-    //         this.props.getUser(validUser.user.uid);
-    //         this.props.history.push('/');
-    //       })
-    //       .catch(error => console.log('ERROR MESSAGE:', error));
-    //   })
-    //   .catch(function(error) {
-    //     console.log('ERROR MESSAGE:', error);
-    //   });
-
     try {
-      await f.auth().setPersistence(f.auth.Auth.Persistence.SESSION);
-      console.log('BEFORE USER LOGS IN');
+      await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
       const validUser = await auth.signInWithEmailAndPassword(email, password);
-      console.log('HELLO FROM AUTHENTICATION');
       this.setState({ email: '', password: '' });
       this.props.getUser(validUser.user.uid);
-      console.log('HELLO FROM AUTHENTICATION:', validUser.user.uid);
       this.props.history.push('/');
     } catch (error) {
-      console.log('USER WAS UNABLE TO SIGN IN', error);
       this.setState({
         email: '',
         password: '',
@@ -63,6 +42,10 @@ class Login extends React.Component {
   }
 
   render() {
+    // if (this.props.currentUser) {
+    //   return <Redirect to="/" />;
+    // }
+
     return (
       <div>
         <h2 className="auth-method">Login</h2>
