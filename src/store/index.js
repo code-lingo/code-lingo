@@ -1,14 +1,16 @@
 import { createStore, applyMiddleware } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
-import { database, auth } from '../configs/firebase_init';
+import loggingMiddleware from 'redux-logger';
 
-const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
+import { database } from '../configs/firebase_init';
+
+export const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
 const LOG_OUT_USER = 'LOG_OUT_USER';
 
-export const getLevelQuestions = level => ({
+export const getLevelQuestions = questions => ({
   type: GET_CURRENT_LEVEL_QUESTIONS,
-  level,
+  questions,
 });
 export const getCurrentUser = uid => ({
   type: GET_CURRENT_USER,
@@ -32,8 +34,8 @@ export const fetchLevelQuestions = levelId => {
             let data = snapshot.val();
             const result = Object.keys(data)
               .map(el => data[el])
-              .sort((a, b) => a.id - b.id)
-            dispatch(getLevelQuestions(result))
+              .sort((a, b) => a.id - b.id);
+            dispatch(getLevelQuestions(result));
           }
         })
         .catch(error => console.log(error));
@@ -44,7 +46,7 @@ export const fetchLevelQuestions = levelId => {
 };
 
 const initialState = {
-  currentLevelQuestions: {},
+  currentLevelQuestions: [],
   currentUser: '',
 };
 
@@ -52,10 +54,10 @@ const initialState = {
  * REDUCER
  */
 
-const user = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CURRENT_LEVEL_QUESTIONS:
-      return { ...state, currentLevelQuestions: action.level };
+      return { ...state, currentLevelQuestions: action.questions };
     case GET_CURRENT_USER:
       return { ...state, currentUser: action.uid };
     case LOG_OUT_USER:
@@ -65,4 +67,7 @@ const user = (state = initialState, action) => {
   }
 };
 
-export default createStore(user, applyMiddleware(ThunkMiddleware));
+export default createStore(
+  reducer,
+  applyMiddleware(ThunkMiddleware, loggingMiddleware)
+);
