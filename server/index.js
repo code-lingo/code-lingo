@@ -24,6 +24,8 @@ firebase.initializeApp({
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets');
 
+// hope this works!
+
 // TODO: move these to firebase endpoints?
 
 // const db = firebase.database();
