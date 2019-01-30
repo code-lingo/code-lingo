@@ -1,35 +1,37 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchLevelQuestions } from '../store'
-import MultipleChoice from './MultipleChoice'
-import ProgressBar from './ProgressBar/ProgressBar'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchLevelQuestions } from '../store';
+import MultipleChoice from './MultipleChoice';
+import ProgressBar from './ProgressBar/ProgressBar';
 
 class Question extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       currentQuestion: 0,
       answers: [],
-      percentage: 0
-    }
-    this.answerQuestion = this.answerQuestion.bind(this)
+      percentage: 0,
+    };
+    this.answerQuestion = this.answerQuestion.bind(this);
   }
 
   componentDidMount() {
-    this.props.getQuestions('level1')
+    const levelId = this.props.match.params.levelId;
+
+    this.props.getQuestions(levelId);
   }
 
   answerQuestion(answer) {
     this.setState({
       currentQuestion: this.state.currentQuestion + 1,
       answers: [...this.state.answers, answer],
-      percentage: this.state.percentage + 20
-    })
+      percentage: this.state.percentage + 20,
+    });
   }
 
   render() {
-    const questions = this.props.questions
-    const question = questions[this.state.currentQuestion]
+    const questions = this.props.questions;
+    const question = questions[this.state.currentQuestion];
 
     if (typeof question === 'object' && question.type === 'multipleChoice') {
       return (
@@ -40,26 +42,26 @@ class Question extends Component {
             answerQuestion={this.answerQuestion}
           />
         </div>
-      )
+      );
     } else {
-      return null
+      return null;
     }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    questions: state.currentLevelQuestions
-  }
-}
+    questions: state.currentLevelQuestions,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    getQuestions: level => dispatch(fetchLevelQuestions(level))
-  }
-}
+    getQuestions: level => dispatch(fetchLevelQuestions(level)),
+  };
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Question)
+)(Question);
