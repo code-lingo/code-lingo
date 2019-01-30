@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
+import loggingMiddleware from 'redux-logger'; // https://github.com/evgenyrodionov/redux-logger
+
 import { database, auth } from '../configs/firebase_init';
 
 const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
@@ -32,8 +34,8 @@ export const fetchLevelQuestions = levelId => {
             let data = snapshot.val();
             const result = Object.keys(data)
               .map(el => data[el])
-              .sort((a, b) => a.id - b.id)
-            dispatch(getLevelQuestions(result))
+              .sort((a, b) => a.id - b.id);
+            dispatch(getLevelQuestions(result));
           }
         })
         .catch(error => console.log(error));
@@ -65,4 +67,7 @@ const user = (state = initialState, action) => {
   }
 };
 
-export default createStore(user, applyMiddleware(ThunkMiddleware));
+export default createStore(
+  user,
+  applyMiddleware(ThunkMiddleware, loggingMiddleware)
+);
