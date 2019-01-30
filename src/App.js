@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+<<<<<<< HEAD
 import { Route, Switch, Link } from 'react-router-dom';
 import { f } from './configs/firebase_init';
+=======
+import { Route, Switch } from 'react-router-dom';
+>>>>>>> fa36ba2ffa4554dd409360d6be334b43c00abc0d
 
 import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
