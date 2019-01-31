@@ -22,6 +22,18 @@ class Home extends Component {
             <h3>Level One</h3>
           </Link>
         </div>
+        <div className="level-selector">
+          <Link to="/questions/level2">
+            <img
+              className="game-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png"
+              alt="Level One"
+            />{' '}
+          </Link>
+          <Link to="/questions/level2">
+            <h3>Level Two</h3>
+          </Link>
+        </div>
       </div>
     );
   }

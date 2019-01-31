@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchLevelQuestions } from '../store'
-import MultipleChoice from './MultipleChoice'
-import ProgressBar from './ProgressBar/ProgressBar'
-import InfoCard from './InfoCard'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchLevelQuestions } from '../store';
+import MultipleChoice from './MultipleChoice';
+import ProgressBar from './ProgressBar/ProgressBar';
+import InfoCard from './InfoCard';
 
 class Question extends Component {
   constructor() {
@@ -18,6 +18,7 @@ class Question extends Component {
 
   componentDidMount() {
     const levelId = this.props.match.params.levelId;
+    console.log('current level is ', levelId);
 
     this.props.getQuestions(levelId);
   }
@@ -46,17 +47,14 @@ class Question extends Component {
             answerQuestion={this.answerQuestion}
           />
         </div>
-      )
+      );
     } else if (typeof question === 'object' && question.type === 'infoCard') {
       return (
         <div>
           <ProgressBar progress={this.state.percentage} />
-          <InfoCard
-            question={question}
-            answerQuestion={this.answerQuestion}
-          />
+          <InfoCard question={question} answerQuestion={this.answerQuestion} />
         </div>
-      )
+      );
     } else {
       return null;
     }
