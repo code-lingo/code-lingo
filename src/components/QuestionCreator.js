@@ -1,33 +1,51 @@
-import React from 'react'
+import React from 'react';
 
-const QuestionCreator = (OtherComponent) => {
+const QuestionCreator = OtherComponent => {
   return class Form extends React.Component {
     constructor() {
-      super()
+      super();
       this.state = {
-        selectedAnswer: {}
-      }
+        selectedAnswer: {},
+      };
 
-      this.handleChange = this.handleChange.bind(this)
-      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleChange = this.handleChange.bind(this);
+      this.handleCheckAnswer = this.handleCheckAnswer.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(evt) {
-      const selectedAnswer = evt
-      this.setState({ selectedAnswer })
+      const selectedAnswer = evt;
+      this.setState({ selectedAnswer });
+    }
+
+    handleCheckAnswer(evt) {
+      evt.preventDefault();
+      if (this.state.selectedAnswer.isCorrect) {
+        // TODO: shows a positive message/feedback for user
+        console.log('Your answer is correct');
+      } else {
+        // TODO: shows a negative message/feedback for user
+        console.log('Your answer is incorrect');
+      }
+      this.props.submitAnswer(this.state.selectedAnswer.isCorrect);
+      this.setState({
+        selectedAnswer: {},
+      });
     }
 
     handleSubmit(evt) {
-      evt.preventDefault()
+      evt.preventDefault();
       if (this.state.selectedAnswer.isCorrect) {
-        console.log('you got it right!');
+        // TODO: shows a positive message/feedback for user
+        console.log('Your answer is correct');
       } else {
-        console.log('womp womp!');
+        // TODO: shows a negative message/feedback for user
+        console.log('Your answer is incorrect');
       }
-      this.props.answerQuestion(this.state.selectedAnswer.isCorrect)
+      this.props.advanceToNextQuestion();
       this.setState({
-        selectedAnswer: {}
-      })
+        selectedAnswer: {},
+      });
     }
 
     render() {
@@ -36,11 +54,12 @@ const QuestionCreator = (OtherComponent) => {
           {...this.props}
           {...this.state}
           handleChange={this.handleChange}
+          handleCheckAnswer={this.handleCheckAnswer}
           handleSubmit={this.handleSubmit}
         />
-      )
+      );
     }
-  }
-}
+  };
+};
 
-export default QuestionCreator
+export default QuestionCreator;
