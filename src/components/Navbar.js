@@ -9,13 +9,11 @@ class Navbar extends Component {
     try {
       await auth.signOut();
       this.props.logOutUser();
-      console.log('SUCCESSFULLY LOGGED OUT USER:', this.props.currentUser);
     } catch (error) {
-      console.log('SignOut Error:', error);
+      alert('Something went wrong:', error);
     }
   }
   render() {
-    console.log('PROPS:', this.props);
     return (
       <nav>
         <ul className="navbar-list">
