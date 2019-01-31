@@ -12,7 +12,7 @@ before_script:
   - npm install
 
 script:
-  - preact build
+  - echo "script"
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN --non-interactive
