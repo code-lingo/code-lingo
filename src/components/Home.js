@@ -11,7 +11,7 @@ class Home extends Component {
     return (
       <div className="home">
         <div id="skill-tree">
-          <div id="level-1">
+          <div id="level-selector">
             <Link to="/questions/level1">
               <img
                 className="game-icon"
