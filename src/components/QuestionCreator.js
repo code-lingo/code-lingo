@@ -6,6 +6,7 @@ const QuestionCreator = OtherComponent => {
       super();
       this.state = {
         selectedAnswer: {},
+        visibility: 'hidden',
       };
 
       this.handleChange = this.handleChange.bind(this);
@@ -20,31 +21,19 @@ const QuestionCreator = OtherComponent => {
 
     handleCheckAnswer(evt) {
       evt.preventDefault();
-      if (this.state.selectedAnswer.isCorrect) {
-        // TODO: shows a positive message/feedback for user
-        console.log('Your answer is correct');
-      } else {
-        // TODO: shows a negative message/feedback for user
-        console.log('Your answer is incorrect');
-      }
+
       this.props.submitAnswer(this.state.selectedAnswer.isCorrect);
       this.setState({
-        selectedAnswer: {},
+        visibility: 'visible',
       });
     }
 
     handleSubmit(evt) {
       evt.preventDefault();
-      if (this.state.selectedAnswer.isCorrect) {
-        // TODO: shows a positive message/feedback for user
-        console.log('Your answer is correct');
-      } else {
-        // TODO: shows a negative message/feedback for user
-        console.log('Your answer is incorrect');
-      }
       this.props.advanceToNextQuestion();
       this.setState({
         selectedAnswer: {},
+        visibility: 'hidden',
       });
     }
 

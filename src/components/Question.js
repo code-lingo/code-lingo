@@ -10,15 +10,17 @@ class Question extends Component {
   constructor() {
     super();
     this.state = {
-      currentQuestion: 0,
+      currentQuestionIndex: 0,
       answers: [],
       percentage: 0,
     };
-    this.answerQuestion = this.answerQuestion.bind(this);
+    this.submitAnswer = this.submitAnswer.bind(this);
+    this.advanceToNextQuestion = this.advanceToNextQuestion.bind(this);
   }
 
   componentDidMount() {
     const levelId = this.props.match.params.levelId;
+    console.log('current level is ', levelId);
 
     this.props.getQuestions(levelId);
   }
@@ -26,19 +28,21 @@ class Question extends Component {
   submitAnswer(answer) {
     this.setState({
       answers: [...this.state.answers, answer],
-      percentage: this.state.percentage + 20,
     });
   }
   advanceToNextQuestion() {
     this.setState({
-      currentQuestion: this.state.currentQuestion + 1,
+      currentQuestionIndex: this.state.currentQuestionIndex + 1,
+      percentage: this.state.percentage + 20,
     });
   }
 
   render() {
     const questions = this.props.questions;
-    const question = questions[this.state.currentQuestion];
+    const question = questions[this.state.currentQuestionIndex];
     const answers = this.state.answers;
+    console.log('ANSWER LEN', answers);
+    console.log('QUEST LEN', questions);
 
     if (answers.length === questions.length) {
       return <Results answers={answers} />;
