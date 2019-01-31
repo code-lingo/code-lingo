@@ -27,7 +27,6 @@ export const addScoreLeaderBoard = score => ({
   score
 })
 
-//THUNK
 export const fetchLevelQuestions = levelId => {
   return async dispatch => {
     try {
