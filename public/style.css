@@ -1,7 +1,29 @@
-.game-icon {
-  width: 40%;
+#skill-tree {
+  max-width: 70%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  #skill-tree {
+    max-width: 100%;
+    background-color: lightgrey;
+    margin: 0;
+  }
+}
+
+#level-1 {
+  flex-basis: 100%;
 }
 
 .level-selector {
+  flex-basis: 40%;
   padding: 10px;
+}
+
+.game-icon {
+  width: 30%;
 }
