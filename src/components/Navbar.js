@@ -15,7 +15,6 @@ class Navbar extends Component {
     }
   }
   render() {
-    console.log('PROPS:', this.props);
     return (
       <nav>
         <ul className="navbar-list">
