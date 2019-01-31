@@ -4,6 +4,7 @@ import { fetchLevelQuestions } from '../store'
 import MultipleChoice from './MultipleChoice'
 import ProgressBar from './ProgressBar/ProgressBar'
 import InfoCard from './InfoCard'
+import Results from './Results'
 
 class Question extends Component {
   constructor() {
@@ -33,8 +34,11 @@ class Question extends Component {
   render() {
     const questions = this.props.questions;
     const question = questions[this.state.currentQuestion];
+    const answers = this.state.answers
 
-    if (
+    if (answers.length === questions.length) {
+      return <Results answers={answers}/>
+    } else if (
       typeof question === 'object' &&
       (question.type === 'multipleChoice' || question.type === 'trueOrFalse')
     ) {

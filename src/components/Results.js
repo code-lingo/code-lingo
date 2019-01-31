@@ -5,10 +5,16 @@ import React from 'react'
 //else replay or exit (to home page)
 
 const Results = props => {
+  const answers = props.answers.filter(answer => answer !== undefined)
+  console.log('answers', answers);
+
+  const correctAnswers = answers.filter(answer => answer === true)
+  console.log('correct answers', correctAnswers);
+
   return (
     <div>
       <h2>Great Job!</h2>
-      <h3>Your score is 4/5</h3>
+      <h3>Your score is {correctAnswers.length}/{answers.length}</h3>
     </div>
   )
 }
