@@ -6,10 +6,7 @@ import React from 'react'
 
 const Results = props => {
   const answers = props.answers.filter(answer => answer !== undefined)
-  console.log('answers', answers);
-
   const correctAnswers = answers.filter(answer => answer === true)
-  console.log('correct answers', correctAnswers);
 
   return (
     <div>
