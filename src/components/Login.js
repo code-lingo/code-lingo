@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../configs/firebase_init';
+import { f, auth } from '../configs/firebase_init';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,15 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.props.getUser(user.uid);
+        this.props.history.push('/');
+      }
+    });
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -25,12 +34,11 @@ class Login extends React.Component {
   async handleLogin(event) {
     const { email, password } = this.state;
     event.preventDefault();
-
     try {
+      await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
       const validUser = await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: '', password: '' });
       this.props.getUser(validUser.user.uid);
-      this.props.history.push('/');
     } catch (error) {
       this.setState({
         email: '',
@@ -40,6 +48,7 @@ class Login extends React.Component {
       });
     }
   }
+
   render() {
     return (
       <div>

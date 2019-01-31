@@ -10,10 +10,10 @@ class Home extends Component {
     }
     return (
       <div className="home">
-        <div class="level-selector">
+        <div className="level-selector">
           <Link to="/questions/level1">
             <img
-              class="game-icon"
+              className="game-icon"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/1024px-Circle-icons-computer.svg.png"
               alt="Level One"
             />{' '}
