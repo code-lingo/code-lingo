@@ -1,33 +1,40 @@
-import React from 'react'
+import React from 'react';
 
-const QuestionCreator = (OtherComponent) => {
+const QuestionCreator = OtherComponent => {
   return class Form extends React.Component {
     constructor() {
-      super()
+      super();
       this.state = {
-        selectedAnswer: {}
-      }
+        selectedAnswer: {},
+        visibility: 'hidden',
+      };
 
-      this.handleChange = this.handleChange.bind(this)
-      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleChange = this.handleChange.bind(this);
+      this.handleCheckAnswer = this.handleCheckAnswer.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(evt) {
-      const selectedAnswer = evt
-      this.setState({ selectedAnswer })
+      const selectedAnswer = evt;
+      this.setState({ selectedAnswer });
+    }
+
+    handleCheckAnswer(evt) {
+      evt.preventDefault();
+
+      this.props.submitAnswer(this.state.selectedAnswer.isCorrect);
+      this.setState({
+        visibility: 'visible',
+      });
     }
 
     handleSubmit(evt) {
-      evt.preventDefault()
-      if (this.state.selectedAnswer.isCorrect) {
-        console.log('you got it right!');
-      } else {
-        console.log('womp womp!');
-      }
-      this.props.answerQuestion(this.state.selectedAnswer.isCorrect)
+      evt.preventDefault();
+      this.props.advanceToNextQuestion();
       this.setState({
-        selectedAnswer: {}
-      })
+        selectedAnswer: {},
+        visibility: 'hidden',
+      });
     }
 
     render() {
@@ -36,11 +43,12 @@ const QuestionCreator = (OtherComponent) => {
           {...this.props}
           {...this.state}
           handleChange={this.handleChange}
+          handleCheckAnswer={this.handleCheckAnswer}
           handleSubmit={this.handleSubmit}
         />
-      )
+      );
     }
-  }
-}
+  };
+};
 
-export default QuestionCreator
+export default QuestionCreator;

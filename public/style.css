@@ -22,3 +22,17 @@
 .game-icon {
   width: 30%;
 }
+
+.green-feedback {
+  background-color: rgb(176, 247, 176);
+  border: 1px solid, rgb(176, 247, 176);
+  border-radius: 5%;
+  color: rgb(68, 110, 68);
+}
+
+.red-feedback {
+  background-color: rgb(247, 176, 176);
+  border: 1px solid, rgb(247, 176, 176);
+  border-radius: 5%;
+  color: rgb(110, 68, 68);
+}
