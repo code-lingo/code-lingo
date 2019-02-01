@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../App.css';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import { SidePanel } from './SidePanel';
 
 class Home extends Component {
   render() {
@@ -11,7 +11,7 @@ class Home extends Component {
     return (
       <div className="home">
         <div id="skill-tree">
-          <div id="level-selector">
+          <div className="level-selector">
             <Link to="/questions/level1">
               <img
                 className="game-icon"
@@ -47,6 +47,9 @@ class Home extends Component {
               <h3>Level Three</h3>
             </Link>
           </div>
+        </div>
+        <div>
+          <SidePanel />
         </div>
       </div>
     );
