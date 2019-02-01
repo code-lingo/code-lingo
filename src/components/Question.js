@@ -44,7 +44,7 @@ class Question extends Component {
     console.log('ANSWER LEN', answers);
     console.log('QUEST LEN', questions);
 
-    if (answers.length === questions.length) {
+    if (questions.length > 0 && questions.length === answers.length) {
       return <Results answers={answers} />;
     } else if (
       typeof question === 'object' &&
