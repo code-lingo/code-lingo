@@ -5,7 +5,6 @@ import MultipleChoice from './MultipleChoice'
 import ProgressBar from './ProgressBar/ProgressBar'
 import InfoCard from './InfoCard'
 import Results from './Results'
-import { database } from '../configs/firebase_init'
 
 class Question extends Component {
   constructor() {
