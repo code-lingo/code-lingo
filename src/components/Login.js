@@ -1,5 +1,5 @@
 import React from 'react';
-import { f, auth } from '../configs/firebase_init';
+import { f, auth, database } from '../configs/firebase_init';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../store';
 import { Link } from 'react-router-dom';
@@ -38,7 +38,14 @@ class Login extends React.Component {
       await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
       const validUser = await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: '', password: '' });
+      database
+        .ref('users/')
+        .child(validUser.user.uid)
+        .once('value', snapshot => {
+          console.log(snapshot.val());
+        });
       this.props.getUser(validUser.user.uid);
+      console.log('valid user', validUser);
     } catch (error) {
       this.setState({
         email: '',

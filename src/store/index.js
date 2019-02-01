@@ -5,6 +5,7 @@ import loggingMiddleware from 'redux-logger';
 import { database } from '../configs/firebase_init';
 
 export const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
+export const ADD_SCORE_TO_LEADERBOARD = 'ADD_SCORE_TO_LEADERBOARD';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
 const LOG_OUT_USER = 'LOG_OUT_USER';
 
@@ -21,7 +22,11 @@ export const logOutUser = () => ({
   type: LOG_OUT_USER,
 });
 
-//THUNK
+export const addScoreLeaderboard = score => ({
+  type: ADD_SCORE_TO_LEADERBOARD,
+  score,
+});
+
 export const fetchLevelQuestions = levelId => {
   return async dispatch => {
     try {
@@ -45,9 +50,51 @@ export const fetchLevelQuestions = levelId => {
   };
 };
 
+export const addLeaderboardScore = (userId, accScore, currentLevel) => {
+  return async dispatch => {
+    try {
+      const user = database.ref('users/').child(userId);
+      await user.once('value', snapshot => {
+        const level = snapshot.val().currentLevel;
+        if (level === currentLevel) {
+          console.log('HELLO LEVELS:', level);
+          console.log('HELLO CURRENTLEVEL:', currentLevel);
+          user.update({ currentLevel: level + 1 });
+        }
+      });
+
+      await database
+        .ref('leaderboard/')
+        .child(userId)
+        .once('value', snapshot => {
+          if (snapshot.val()) {
+            const currentScore = snapshot.val().score;
+            database
+              .ref('leaderboard/')
+              .child(userId)
+              .set({
+                score: currentScore + accScore,
+              });
+          } else {
+            database
+              .ref('leaderboard/')
+              .child(userId)
+              .set({
+                score: accScore,
+              });
+          }
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
 const initialState = {
   currentLevelQuestions: [],
   currentUser: '',
+  userScore: 0,
+  currentLevel: '',
 };
 
 /**
@@ -62,6 +109,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, currentUser: action.uid };
     case LOG_OUT_USER:
       return { ...state, currentUser: '' };
+    case ADD_SCORE_TO_LEADERBOARD:
+      return { ...state, userScore: action.score };
     default:
       return state;
   }

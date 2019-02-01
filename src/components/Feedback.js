@@ -1,9 +1,6 @@
 import React from 'react';
 
 export const Feedback = ({ answer }) => {
-  console.log('CORRECT FEEDBACK', answer.isCorrect);
-  console.log('selected answer', answer);
-
   return (
     <div>
       {answer.isCorrect ? (
