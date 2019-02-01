@@ -39,11 +39,15 @@ class Question extends Component {
     const questions = this.props.questions;
     const question = questions[this.state.currentQuestionIndex];
     const answers = this.state.answers;
-    console.log('ANSWER LEN', answers);
-    console.log('QUEST LEN', questions);
 
     if (questions.length > 0 && questions.length === answers.length) {
-      return <Results answers={answers} />;
+      const totalAnswers = answers.filter(answer => answer !== undefined);
+      const correctAnswers = answers
+        .filter(answer => answer !== undefined)
+        .filter(answer => answer === true);
+      return (
+        <Results correctAnswers={correctAnswers} totalAnswers={totalAnswers} />
+      );
     } else if (
       typeof question === 'object' &&
       (question.type === 'multipleChoice' || question.type === 'trueOrFalse')
