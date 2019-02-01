@@ -21,8 +21,6 @@ class Question extends Component {
   componentDidMount() {
     // grab the level from the URL
     const levelId = this.props.match.params.levelId;
-
-    // grab the questions from the database, based on the levelId
     this.props.getQuestions(levelId);
   }
 
@@ -47,7 +45,13 @@ class Question extends Component {
 
     // show result component only when all questions have been answered
     if (questions.length > 0 && questions.length === answers.length) {
-      return <Results answers={answers} />;
+      const totalAnswers = answers.filter(answer => answer !== undefined);
+      const correctAnswers = answers
+        .filter(answer => answer !== undefined)
+        .filter(answer => answer === true);
+      return (
+        <Results correctAnswers={correctAnswers} totalAnswers={totalAnswers} />
+      );
     } else if (
       typeof question === 'object' &&
       (question.type === 'multipleChoice' ||
