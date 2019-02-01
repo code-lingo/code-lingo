@@ -10,7 +10,7 @@ export const SidePanel = () => {
 
   return (
     <Fragment>
-      <div id="side-panel">
+      <div id="user-score">
         <div>Current Level: {level}</div>
         <div>Total Score: {score}</div>
       </div>
