@@ -7,7 +7,7 @@ import React from 'react'
 const Results = props => {
   const answers = props.answers.filter(answer => answer !== undefined)
   const correctAnswers = answers.filter(answer => answer === true)
-
+  const totalScore = correctAnswers.length
   return (
     <div>
       <h2>Great Job!</h2>

@@ -22,7 +22,7 @@ export const logOutUser = () => ({
   type: LOG_OUT_USER
 })
 
-export const addScoreLeaderBoard = score => ({
+export const addScoreLeaderboard = score => ({
   type: ADD_SCORE_TO_LEADERBOARD,
   score
 })
@@ -50,23 +50,31 @@ export const fetchLevelQuestions = levelId => {
   }
 }
 
-export const addLeaderboardScore = (userId, score) => {
+export const addLeaderboardScore = (userId, accScore) => {
   return async dispatch => {
     try {
-      database.currentUser
+      database
         .ref('leaderboard/')
         .child(userId)
-        .set({
-          score: score
-        })
         .once('value', snapshot => {
-          const exists = snapshot.val() !== null
-          if (exists) {
-            let data = snapshot.val()
-            dispatch(addScoreLeaderBoard(data))
+          //if current level === level played
+          if (snapshot.val()) {
+            const currentScore = snapshot.val().score
+            database
+              .ref('leaderboard/')
+              .child(userId)
+              .set({
+                score: currentScore + accScore
+              })
+          } else {
+            database
+              .ref('leaderboard/')
+              .child(userId)
+              .set({
+                score: accScore
+              })
           }
         })
-        .catch(error => console.log(error))
     } catch (err) {
       console.error(err)
     }
@@ -92,7 +100,7 @@ export const reducer = (state = initialState, action) => {
     case LOG_OUT_USER:
       return { ...state, currentUser: '' }
     case ADD_SCORE_TO_LEADERBOARD:
-      return { ...state, score: action.score }
+      return { ...state, userScore: action.score }
     default:
       return state
   }
