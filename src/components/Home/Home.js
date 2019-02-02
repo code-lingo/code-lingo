@@ -48,7 +48,7 @@ class Home extends Component {
             </Link>
           </div>
         </div>
-        <div>
+        <div id="side-panel">
           <SidePanel />
         </div>
       </div>
