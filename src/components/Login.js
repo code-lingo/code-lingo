@@ -16,13 +16,8 @@ class Login extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
   }
 
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.props.getUser(user.uid);
-        this.props.history.push('/');
-      }
-    });
+  componentWillUnmount() {
+    document.removeEventListener('click', this.closeMenu);
   }
 
   handleChange(event) {
