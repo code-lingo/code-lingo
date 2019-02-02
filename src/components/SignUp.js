@@ -17,6 +17,15 @@ class SignUp extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
   }
 
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.props.getUser(user.uid);
+        this.props.history.push('/');
+      }
+    });
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -27,6 +36,7 @@ class SignUp extends React.Component {
     const newUser = {
       username,
       email,
+      currentLevel: 1,
     };
 
     database
