@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCurrentUser, authorizedUser } from '../store';
 import { Link } from 'react-router-dom';
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -30,12 +30,13 @@ class Login extends React.Component {
       const validUser = await auth.signInWithEmailAndPassword(email, password);
       this.props.getCurrentUser(validUser.user.uid);
       this.props.authorizedUser(true);
+      this.props.history.push('/');
     } catch (error) {
       this.setState({
         email: '',
         password: '',
         errorMessage:
-          'Email or Password is incorrect, please try logging in again',
+          'Sorry, it looks like the Username and/or Password you provided does not match our records',
       });
     }
   }
@@ -48,30 +49,28 @@ class Login extends React.Component {
           <p className="auth-error-message">{this.state.errorMessage}</p>
         )}
         <form className="auth-form" onSubmit={this.handleLogin}>
-          <label className="auth-label">
-            Email:
-            <input
-              required
-              className="auth-input"
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              placeholder="Input your email"
-            />
-          </label>
-          <label className="auth-label">
-            Password:
-            <input
-              required
-              className="auth-input"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              placeholder="Input your password"
-            />
-          </label>
+          <label className="auth-label">Email:</label>
+          <input
+            required
+            className="auth-input"
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            placeholder="Input your email"
+          />
+
+          <label className="auth-label">Password:</label>
+          <input
+            required
+            className="auth-input"
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+            placeholder="Input your password"
+          />
+
           <button className="auth-button" type="submit">
             Login
           </button>

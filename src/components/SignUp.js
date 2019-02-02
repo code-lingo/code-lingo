@@ -53,13 +53,15 @@ class SignUp extends React.Component {
       await this.createUser(validUser.user, email, username);
       this.props.getCurrentUser(validUser.user.uid);
       this.props.authorizedUser(true);
+      this.props.history.push('/');
     } catch (error) {
       console.log('Error', error);
       this.setState({
         username: '',
         email: '',
         password: '',
-        errorMessage: error.message,
+        errorMessage:
+          'Sorry, it looks like the Username and/or Password you provided does not match our records',
       });
     }
   }
