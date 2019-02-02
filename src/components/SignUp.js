@@ -65,10 +65,6 @@ class SignUp extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('click', this.closeMenu);
-  }
-
   render() {
     return (
       <div>
