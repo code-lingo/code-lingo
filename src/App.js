@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { auth } from './configs/firebase_init';
 import { connect } from 'react-redux';
 
@@ -12,13 +12,14 @@ import Home from './components/Home/Home';
 import Leaderboard from './components/Leaderboard';
 import { NoMatch } from './components/NoMatch';
 
-import { getCurrentUser } from './store';
+import { getCurrentUser, authorizedUser } from './store';
 
 class App extends Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.props.getUser(user.uid);
+        this.props.getCurrentUser(user.uid);
+        this.props.authorizedUser(true);
         this.props.history.push('/');
       }
     });
@@ -48,9 +49,10 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+const mapToDispatch = {
+  getCurrentUser,
+  authorizedUser,
+};
 
 export default withRouter(
   connect(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { f, auth } from '../configs/firebase_init';
 import { connect } from 'react-redux';
-import { getCurrentUser } from '../store';
+import { getCurrentUser, authorizedUser } from '../store';
 import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -28,8 +28,8 @@ class Login extends React.Component {
     try {
       await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
       const validUser = await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: '', password: '' });
-      this.props.getUser(validUser.user.uid);
+      this.props.getCurrentUser(validUser.user.uid);
+      this.props.authorizedUser(true);
     } catch (error) {
       this.setState({
         email: '',
@@ -88,9 +88,10 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+const mapToDispatch = {
+  getCurrentUser,
+  authorizedUser,
+};
 
 export default connect(
   mapToState,

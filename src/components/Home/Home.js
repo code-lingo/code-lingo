@@ -4,8 +4,11 @@ import { Redirect, Link } from 'react-router-dom';
 import { SidePanel } from './SidePanel';
 
 class Home extends Component {
+  componentDidMount() {
+    console.log('HOME KNOWS THAT USER IS LOGGED IN:', this.props.currentUser);
+  }
   render() {
-    if (!this.props.currentUser) {
+    if (!this.props.currentUser && this.props.isAuthorized) {
       return <Redirect to="/login" />;
     }
     return (
@@ -58,6 +61,7 @@ class Home extends Component {
 
 const mapToState = state => ({
   currentUser: state.currentUser,
+  isAuthorized: state.isAuthorized,
 });
 
 export default connect(mapToState)(Home);

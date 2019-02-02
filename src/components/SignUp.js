@@ -2,7 +2,7 @@ import React from 'react';
 import { auth, database } from '../configs/firebase_init';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCurrentUser } from '../store';
+import { getCurrentUser, authorizedUser } from '../store';
 
 class SignUp extends React.Component {
   constructor() {
@@ -51,9 +51,8 @@ class SignUp extends React.Component {
         password
       );
       await this.createUser(validUser.user, email, username);
-      this.props.getUser(validUser.user.uid);
-      this.setState({ username: '', email: '', password: '' });
-      this.props.history.push('/');
+      this.props.getCurrentUser(validUser.user.uid);
+      this.props.authorizedUser(true);
     } catch (error) {
       console.log('Error', error);
       this.setState({
@@ -125,9 +124,10 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+const mapToDispatch = {
+  getCurrentUser,
+  authorizedUser,
+};
 
 export default connect(
   mapToState,

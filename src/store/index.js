@@ -9,6 +9,7 @@ export const ADD_SCORE_TO_LEADERBOARD = 'ADD_SCORE_TO_LEADERBOARD';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
 const LOG_OUT_USER = 'LOG_OUT_USER';
 const GET_LEADERBOARD = 'GET_LEADERBOARD';
+const AUTH_USER = 'AUTH_USER';
 
 export const getLevelQuestions = questions => ({
   type: GET_CURRENT_LEVEL_QUESTIONS,
@@ -31,6 +32,11 @@ export const addScoreLeaderboard = score => ({
 const getLeaderBoard = board => ({
   type: GET_LEADERBOARD,
   board,
+});
+
+export const authorizedUser = isLoggedIn => ({
+  type: AUTH_USER,
+  isLoggedIn,
 });
 
 export const fetchLevelQuestions = levelId => {
@@ -121,6 +127,7 @@ const initialState = {
   userScore: 0,
   currentLevel: '',
   leaderboard: [],
+  isAuthorized: false,
 };
 
 /**
@@ -133,6 +140,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, currentLevelQuestions: action.questions };
     case GET_CURRENT_USER:
       return { ...state, currentUser: action.uid };
+    case AUTH_USER:
+      return { ...state, isAuthorized: action.isLoggedIn };
     case LOG_OUT_USER:
       return { ...state, currentUser: '' };
     case ADD_SCORE_TO_LEADERBOARD:
