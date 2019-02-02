@@ -9,6 +9,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Question from './components/Question';
 import Home from './components/Home/Home';
+import Leaderboard from './components/Leaderboard';
 
 import { getCurrentUser } from './store';
 
@@ -32,6 +33,7 @@ class App extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/questions/:levelId" component={Question} />
+            <Route path="/leaderboard" component={Leaderboard} />
           </Switch>
         </div>
       </div>
