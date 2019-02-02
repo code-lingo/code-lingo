@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../App';
+import Login from './Login';
 import { Provider } from 'react-redux';
 import store from '../store';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -31,15 +32,18 @@ describe('/Login', () => {
     );
   });
 
-  it('renders the login title', () => {
-    const wrapper = shallow(
-      <div>
-        <h2 className="auth-method">Login</h2>
-      </div>
+  xit('renders the login title', () => {
+    // TODO: FIX THIS TEST SO THAT IT CHECKS FOR PROPER RENDERING UI
+    const wrapper = mount(
+      <Provider context={store}>
+        <Login context={store} />
+      </Provider>
     );
-    expect(wrapper.contains(<h2 className="auth-method">Login</h2>)).to.equal(
-      true
-    );
+    // chai.assert(wrapper.hasClass('auth-method'));
+    chai.assert.equal(wrapper.find('.auth-method').text(), Login);
+    // expect(wrapper.contains(<h2 className="auth-method">Login</h2>)).to.equal(
+    //   true
+    // );
   });
 
   it('renders a form', () => {
