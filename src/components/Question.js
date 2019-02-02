@@ -12,16 +12,15 @@ class Question extends Component {
     this.state = {
       currentQuestionIndex: 0,
       answers: [],
-      percentage: 0,
+      percentage: 5,
     };
     this.submitAnswer = this.submitAnswer.bind(this);
     this.advanceToNextQuestion = this.advanceToNextQuestion.bind(this);
   }
 
   componentDidMount() {
+    // grab the level from the URL
     const levelId = this.props.match.params.levelId;
-    console.log('current level is ', levelId);
-
     this.props.getQuestions(levelId);
   }
 
@@ -31,9 +30,11 @@ class Question extends Component {
     });
   }
   advanceToNextQuestion() {
+    const increment = 95 / this.props.questions.length;
+
     this.setState({
       currentQuestionIndex: this.state.currentQuestionIndex + 1,
-      percentage: this.state.percentage + 20,
+      percentage: this.state.percentage + increment,
     });
   }
 
@@ -41,34 +42,38 @@ class Question extends Component {
     const questions = this.props.questions;
     const question = questions[this.state.currentQuestionIndex];
     const answers = this.state.answers;
-    console.log('ANSWER LEN', answers);
-    console.log('QUEST LEN', questions);
 
-    if (answers.length === questions.length) {
-      return <Results answers={answers} />;
+    // show result component only when all questions have been answered
+    if (questions.length > 0 && questions.length === answers.length) {
+      const totalAnswers = answers.filter(answer => answer !== undefined);
+      const correctAnswers = answers
+        .filter(answer => answer !== undefined)
+        .filter(answer => answer === true);
+      return (
+        <Results correctAnswers={correctAnswers} totalAnswers={totalAnswers} />
+      );
     } else if (
       typeof question === 'object' &&
-      (question.type === 'multipleChoice' || question.type === 'trueOrFalse')
+      (question.type === 'multipleChoice' ||
+        question.type === 'trueOrFalse' ||
+        question.type === 'infoCard')
     ) {
       return (
         <div>
           <ProgressBar progress={this.state.percentage} />
-          <MultipleChoice
-            question={question}
-            submitAnswer={this.submitAnswer}
-            advanceToNextQuestion={this.advanceToNextQuestion}
-          />
-        </div>
-      );
-    } else if (typeof question === 'object' && question.type === 'infoCard') {
-      return (
-        <div>
-          <ProgressBar progress={this.state.percentage} />
-          <InfoCard
-            question={question}
-            submitAnswer={this.submitAnswer}
-            advanceToNextQuestion={this.advanceToNextQuestion}
-          />
+          {question.type === 'infoCard' ? (
+            <InfoCard
+              question={question}
+              submitAnswer={this.submitAnswer}
+              advanceToNextQuestion={this.advanceToNextQuestion}
+            />
+          ) : (
+            <MultipleChoice
+              question={question}
+              submitAnswer={this.submitAnswer}
+              advanceToNextQuestion={this.advanceToNextQuestion}
+            />
+          )}
         </div>
       );
     } else {

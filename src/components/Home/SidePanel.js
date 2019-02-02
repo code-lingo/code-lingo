@@ -10,7 +10,7 @@ export const SidePanel = () => {
 
   return (
     <div>
-      <div id='side-panel'>
+      <div id="user-score">
         <h3>Current Level:</h3>
         <p id='side-panel-level'>{level}</p>
         <h3>Total Score:</h3>

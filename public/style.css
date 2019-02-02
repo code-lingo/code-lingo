@@ -300,13 +300,13 @@ nav div {
 
 /* SIDE PANEL */
 
-#side-panel {
+#user-score {
   /* background-color: lightsalmon; */
   /* width: 30%; */
   padding: 10px;
 }
 
-#side-panel p {
+#user-score p {
   font-size: 16px;
 }
 
