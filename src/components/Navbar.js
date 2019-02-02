@@ -34,6 +34,9 @@ class Navbar extends Component {
               <NavLink className="navbar-item active" to={'/'}>
                 Home
               </NavLink>
+              <NavLink className="navbar-item" to={'/leaderboard'}>
+                Leaderboard
+              </NavLink>
               <NavLink to="/login">
                 <button
                   className="navbar-item"
