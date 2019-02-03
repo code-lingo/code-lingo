@@ -8,7 +8,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Question from './components/Question';
 import Home from './components/Home/Home';
-import Leaderboard from './components/Leaderboard';
+import Leaderboard from './components/Home/Leaderboard';
 import { NoMatch } from './components/NoMatch';
 
 import { getCurrentUser, authorizedUser } from './store';

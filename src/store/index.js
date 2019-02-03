@@ -10,6 +10,7 @@ const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
 const ADD_SCORE_TO_LEADERBOARD = 'ADD_SCORE_TO_LEADERBOARD';
 const GET_CURRENT_LEVEL = 'GET_CURRENT_LEVEL';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
+const GET_USER_TOTAL = 'GET_USER_TOTAL';
 const LOG_OUT_USER = 'LOG_OUT_USER';
 const GET_LEADERBOARD = 'GET_LEADERBOARD';
 const AUTH_USER = 'AUTH_USER';
@@ -25,9 +26,14 @@ export const getCurrentUser = uid => ({
   uid,
 });
 
-const getCurrentLevel = uid => ({
+const getCurrentLevel = level => ({
   type: GET_CURRENT_LEVEL,
   level,
+});
+
+const getUserTotal = total => ({
+  type: GET_USER_TOTAL,
+  total,
 });
 
 export const logOutUser = () => ({
@@ -73,7 +79,27 @@ export const fetchLevelQuestions = levelId => {
   };
 };
 
-const fetchCurrentLevel = userId => {
+export const fetchUserTotal = userId => {
+  return async dispatch => {
+    try {
+      await database.ref('leaderboard/').once('value', snapshot => {
+        const data = snapshot.val();
+        if (data) {
+          console.log('leaderboard', data);
+          console.log('mcrae id is ', userId);
+          const entry = data[userId] || 0;
+          const total = entry.score;
+          console.log('mcrae score is', total);
+          dispatch(getUserTotal(total));
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const fetchCurrentLevel = userId => {
   return async dispatch => {
     try {
       database
@@ -81,7 +107,10 @@ const fetchCurrentLevel = userId => {
         .child(userId)
         .once('value', snapshot => {
           if (snapshot.val()) {
-            console.log(snapshot.val());
+            const level = snapshot.val().currentLevel;
+            dispatch(getCurrentLevel(level));
+          } else {
+            console.log('snapshot not defined!');
           }
         });
     } catch (err) {
@@ -156,6 +185,7 @@ const initialState = {
   currentLevel: '',
   leaderboard: [],
   isAuthorized: false,
+  totalScore: 0,
 };
 
 /**
@@ -168,6 +198,10 @@ export const reducer = (state = initialState, action) => {
       return { ...state, currentLevelQuestions: action.questions };
     case GET_CURRENT_USER:
       return { ...state, currentUser: action.uid };
+    case GET_CURRENT_LEVEL:
+      return { ...state, currentLevel: action.level };
+    case GET_USER_TOTAL:
+      return { ...state, totalScore: action.total };
     case AUTH_USER:
       return { ...state, isAuthorized: action.isLoggedIn };
     case LOG_OUT_USER:

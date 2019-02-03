@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchLeaderBoard } from '../store';
+import { fetchLeaderBoard } from '../../store';
 import { connect } from 'react-redux';
 
 class Leaderboard extends Component {
@@ -11,8 +11,8 @@ class Leaderboard extends Component {
       return null;
     }
     return (
-      <div className='card' id='leaderboard' >
-        <h1 className='card-header'>Leaderboard</h1>
+      <div className="card" id="leaderboard">
+        <h1 className="card-header">Leaderboard</h1>
         <table>
           <tbody>
             <tr>

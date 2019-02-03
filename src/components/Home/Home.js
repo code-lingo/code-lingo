@@ -7,8 +7,15 @@ import { fetchCurrentLevel } from '../../store';
 class Home extends Component {
   componentDidMount() {
     console.log('HOME KNOWS THAT USER IS LOGGED IN:', this.props.currentUser);
-    fetchCurrentLevel(this.props.currentUser);
+    const userId = this.props.currentUser;
+    this.props.getLevel(userId);
   }
+
+  componentDidUpdate() {
+    const userId = this.props.currentUser;
+    this.props.getLevel(userId);
+  }
+
   render() {
     if (!this.props.currentUser && this.props.isAuthorized) {
       return <Redirect to="/login" />;
@@ -54,7 +61,7 @@ class Home extends Component {
           </div>
         </div>
         <div id="side-panel">
-          <SidePanel />
+          <SidePanel level={this.props.currentLevel} />
         </div>
       </div>
     );
@@ -64,6 +71,16 @@ class Home extends Component {
 const mapToState = state => ({
   currentUser: state.currentUser,
   isAuthorized: state.isAuthorized,
+  currentLevel: state.currenLevel,
 });
 
-export default connect(mapToState)(Home);
+const mapDispatchToProps = dispatch => {
+  return {
+    getLevel: user => dispatch(fetchCurrentLevel(user)),
+  };
+};
+
+export default connect(
+  mapToState,
+  mapDispatchToProps
+)(Home);
