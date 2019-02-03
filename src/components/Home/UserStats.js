@@ -25,9 +25,11 @@ class UserStats extends Component {
     console.log('mcrae total score is', this.props.totalScore);
 
     return (
-      <div>
-        <div id="user-score">Current Level: {this.props.currentLevel}</div>
-        <div id="user-score">Total Score: {this.props.totalScore}</div>
+      <div id="user-score" className="card">
+        <h3>Current Level:</h3>
+        <p id="side-panel-level">{this.props.currentLevel}</p>
+        <h3>Total Score:</h3>
+        <p>{this.props.totalScore}</p>
       </div>
     );
   }
