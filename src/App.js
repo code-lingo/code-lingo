@@ -11,7 +11,8 @@ import Home from './components/Home/Home';
 import Leaderboard from './components/Leaderboard';
 import { NoMatch } from './components/NoMatch';
 
-import { getCurrentUser, authorizedUser } from './store';
+import { getCurrentUser } from './store/reducers/currentUser';
+import { authorizedUser } from './store/reducers/isAuthorized';
 
 class App extends Component {
   componentDidMount() {
