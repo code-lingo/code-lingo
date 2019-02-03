@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { SidePanel } from './SidePanel';
-import { fetchCurrentLevel } from '../../store';
+import { fetchCurrentLevel } from '../../store/reducers/currentLevel';
 
 class Home extends Component {
   componentDidMount() {

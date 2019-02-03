@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrentLevel, fetchUserTotal } from '../../store';
+import { fetchCurrentLevel } from '../../store/reducers/currentLevel';
 
 class UserStats extends Component {
   componentDidMount() {
     const userId = this.props.currentUser;
     this.props.fetchCurrentLevel(userId);
-    this.props.fetchUserTotal(userId);
   }
 
   componentDidUpdate() {
     const userId = this.props.currentUser;
 
     this.props.fetchCurrentLevel(userId);
-    this.props.fetchUserTotal(userId);
   }
 
   render() {
@@ -27,7 +25,7 @@ class UserStats extends Component {
         <h3>Current Level:</h3>
         <p id="side-panel-level">{this.props.currentLevel}</p>
         <h3>Total Score:</h3>
-        <p>{this.props.totalScore}</p>
+        <p>1000</p>
       </div>
     );
   }
@@ -41,7 +39,6 @@ const mapToState = state => ({
 
 const mapDispatch = {
   fetchCurrentLevel,
-  fetchUserTotal,
 };
 
 export default connect(
