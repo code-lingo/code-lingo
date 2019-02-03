@@ -2,7 +2,7 @@ import React from 'react';
 import { auth, database } from '../configs/firebase_init';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCurrentUser } from '../store';
+import { getCurrentUser, authorizedUser } from '../store';
 
 class SignUp extends React.Component {
   constructor() {
@@ -15,15 +15,6 @@ class SignUp extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
-  }
-
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.props.getUser(user.uid);
-        this.props.history.push('/');
-      }
-    });
   }
 
   handleChange(event) {
@@ -60,8 +51,8 @@ class SignUp extends React.Component {
         password
       );
       await this.createUser(validUser.user, email, username);
-      this.props.getUser(validUser.user.uid);
-      this.setState({ username: '', email: '', password: '' });
+      this.props.getCurrentUser(validUser.user.uid);
+      this.props.authorizedUser(true);
       this.props.history.push('/');
     } catch (error) {
       console.log('Error', error);
@@ -69,20 +60,21 @@ class SignUp extends React.Component {
         username: '',
         email: '',
         password: '',
-        errorMessage: error.message,
+        errorMessage:
+          'Sorry, it looks like the Username and/or Password you provided does not match our records',
       });
     }
   }
+
   render() {
     return (
-      <div>
-        <h2 className="auth-method">Sign Up</h2>
+      <div className="card form">
+        <h1 className="auth-method card-header">Sign Up</h1>
         {this.state.errorMessage && (
           <p className="auth-error-message">{this.state.errorMessage}</p>
         )}
         <form className="auth-form" onSubmit={this.handleSignUp}>
           <label className="auth-label">
-            Username:
             <input
               required
               className="auth-input"
@@ -90,11 +82,10 @@ class SignUp extends React.Component {
               name="username"
               value={this.state.username}
               onChange={this.handleChange}
-              placeholder="Input username"
+              placeholder="Username"
             />
           </label>
           <label className="auth-label">
-            Email:
             <input
               required
               className="auth-input"
@@ -102,11 +93,10 @@ class SignUp extends React.Component {
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="Input your email"
+              placeholder="Email"
             />
           </label>
           <label className="auth-label">
-            Password:
             <input
               required
               className="auth-input"
@@ -114,16 +104,16 @@ class SignUp extends React.Component {
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
-              placeholder="Input your password"
+              placeholder="Password"
             />
           </label>
           <button className="auth-button" type="submit">
             Sign Up
           </button>
-          <Link className="auth-redirect-link" to="/signup">
-            Already have an account? Login here!
-          </Link>
         </form>
+        <Link className="auth-redirect-link form-message" to="/signup">
+          <p>Already have an account? Login here!</p>
+        </Link>
       </div>
     );
   }
@@ -133,9 +123,10 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+const mapToDispatch = {
+  getCurrentUser,
+  authorizedUser,
+};
 
 export default connect(
   mapToState,
