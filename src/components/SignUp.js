@@ -2,7 +2,7 @@ import React from 'react';
 import { auth, database } from '../configs/firebase_init';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCurrentUser } from '../store';
+import { getCurrentUser, authorizedUser } from '../store';
 
 class SignUp extends React.Component {
   constructor() {
@@ -15,15 +15,6 @@ class SignUp extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
-  }
-
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.props.getUser(user.uid);
-        this.props.history.push('/');
-      }
-    });
   }
 
   handleChange(event) {
@@ -60,8 +51,8 @@ class SignUp extends React.Component {
         password
       );
       await this.createUser(validUser.user, email, username);
-      this.props.getUser(validUser.user.uid);
-      this.setState({ username: '', email: '', password: '' });
+      this.props.getCurrentUser(validUser.user.uid);
+      this.props.authorizedUser(true);
       this.props.history.push('/');
     } catch (error) {
       console.log('Error', error);
@@ -69,10 +60,12 @@ class SignUp extends React.Component {
         username: '',
         email: '',
         password: '',
-        errorMessage: error.message,
+        errorMessage:
+          'Sorry, it looks like the Username and/or Password you provided does not match our records',
       });
     }
   }
+
   render() {
     return (
       <div>
@@ -133,9 +126,10 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+const mapToDispatch = {
+  getCurrentUser,
+  authorizedUser,
+};
 
 export default connect(
   mapToState,

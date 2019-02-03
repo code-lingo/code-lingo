@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { auth } from '../configs/firebase_init';
 import { logOutUser } from '../store';
 
-class Navbar extends Component {
+export class Navbar extends Component {
   async handleSignOut() {
     try {
       await auth.signOut();

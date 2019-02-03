@@ -14,16 +14,19 @@ class Leaderboard extends Component {
       <div>
         <h1>Leaderboard</h1>
         <table>
-          <tr>
-            <th>Programmers</th>
-            <th>Rank</th>
-          </tr>
-          {this.props.leaderboard.map(leader => (
+          <tbody>
             <tr>
-              <td>{leader.username}</td>
-              <td>{leader.score}</td>
+              <th>Programmers</th>
+              <th>Rank</th>
             </tr>
-          ))}
+
+            {this.props.leaderboard.map((leader, key) => (
+              <tr key={key}>
+                <td>{leader.username}</td>
+                <td>{leader.score}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     );

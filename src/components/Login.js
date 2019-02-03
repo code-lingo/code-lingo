@@ -1,10 +1,10 @@
 import React from 'react';
-import { f, auth, database } from '../configs/firebase_init';
+import { f, auth } from '../configs/firebase_init';
 import { connect } from 'react-redux';
-import { getCurrentUser } from '../store';
+import { getCurrentUser, authorizedUser } from '../store';
 import { Link } from 'react-router-dom';
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -14,15 +14,6 @@ class Login extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-  }
-
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.props.getUser(user.uid);
-        this.props.history.push('/');
-      }
-    });
   }
 
   handleChange(event) {
@@ -37,21 +28,15 @@ class Login extends React.Component {
     try {
       await auth.setPersistence(f.auth.Auth.Persistence.LOCAL);
       const validUser = await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: '', password: '' });
-      database
-        .ref('users/')
-        .child(validUser.user.uid)
-        .once('value', snapshot => {
-          console.log(snapshot.val());
-        });
-      this.props.getUser(validUser.user.uid);
-      console.log('valid user', validUser);
+      this.props.getCurrentUser(validUser.user.uid);
+      this.props.authorizedUser(true);
+      this.props.history.push('/');
     } catch (error) {
       this.setState({
         email: '',
         password: '',
         errorMessage:
-          'Email or Password is incorrect, please try logging in again',
+          'Sorry, it looks like the Username and/or Password you provided does not match our records',
       });
     }
   }
@@ -64,30 +49,28 @@ class Login extends React.Component {
           <p className="auth-error-message">{this.state.errorMessage}</p>
         )}
         <form className="auth-form" onSubmit={this.handleLogin}>
-          <label className="auth-label">
-            Email:
-            <input
-              required
-              className="auth-input"
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              placeholder="Input your email"
-            />
-          </label>
-          <label className="auth-label">
-            Password:
-            <input
-              required
-              className="auth-input"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              placeholder="Input your password"
-            />
-          </label>
+          <label className="auth-label">Email:</label>
+          <input
+            required
+            className="auth-input"
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            placeholder="Input your email"
+          />
+
+          <label className="auth-label">Password:</label>
+          <input
+            required
+            className="auth-input"
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+            placeholder="Input your password"
+          />
+
           <button className="auth-button" type="submit">
             Login
           </button>
@@ -104,9 +87,10 @@ const mapToState = state => ({
   currentUser: state.currentUser,
 });
 
-const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+const mapToDispatch = {
+  getCurrentUser,
+  authorizedUser,
+};
 
 export default connect(
   mapToState,
