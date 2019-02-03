@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addLeaderboardScore } from '../store'
-import { Link } from 'react-router-dom'
+import { addLeaderboardScore } from '../store/reducers/userScore'
 
 class Results extends Component {
   componentDidMount() {

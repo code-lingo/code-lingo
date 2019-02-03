@@ -2,7 +2,8 @@ import React from 'react';
 import { auth, database } from '../configs/firebase_init';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCurrentUser, authorizedUser } from '../store';
+import { getCurrentUser } from '../store/reducers/currentUser';
+import { authorizedUser } from '../store/reducers/isAuthorized';
 
 class SignUp extends React.Component {
   constructor() {
