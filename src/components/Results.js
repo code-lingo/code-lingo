@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addLeaderboardScore } from '../store';
+import { addLeaderboardScore } from '../store/reducers/userScore';
 
 class Results extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Results extends Component {
   render() {
     const { totalAnswers, correctAnswers } = this.props;
     return (
-      <div className='card question'>
+      <div className="card question">
         <h2>Great Job!</h2>
         <h3>
           Your score is {correctAnswers.length}/{totalAnswers.length}
