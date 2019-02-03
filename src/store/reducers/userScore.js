@@ -32,6 +32,7 @@ export const addLeaderboardScore = (userId, accScore, currentLevel) => {
               .ref('leaderboard/')
               .child(userId)
               .set({
+                username,
                 score: currentScore + accScore,
               });
           } else {

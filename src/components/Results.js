@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addLeaderboardScore } from '../store/reducers/userScore';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addLeaderboardScore } from '../store/reducers/userScore'
 
 class Results extends Component {
   componentDidMount() {
     this.props.addLeaderboardScore(
       this.props.currentUser,
-      this.props.correctAnswers.length,
-      1
-    );
+      this.props.correctAnswers.length
+    )
   }
 
   render() {
-    const { totalAnswers, correctAnswers } = this.props;
+    const { totalAnswers, correctAnswers } = this.props
     return (
       <div className="card question">
         <h2>Great Job!</h2>
@@ -20,20 +19,20 @@ class Results extends Component {
           Your score is {correctAnswers.length}/{totalAnswers.length}
         </h3>
       </div>
-    );
+    )
   }
 }
 
-const mapState = state => ({
+const mapState = (state, { match }) => ({
   currentUser: state.currentUser,
-  currentLevel: state.currentLevel,
-});
+  currentLevel: state.currentLevel
+})
 
 const mapDispatch = {
-  addLeaderboardScore,
-};
+  addLeaderboardScore
+}
 
 export default connect(
   mapState,
   mapDispatch
-)(Results);
+)(Results)
