@@ -1,7 +1,8 @@
 import React from 'react';
 import { f, auth } from '../configs/firebase_init';
 import { connect } from 'react-redux';
-import { getCurrentUser, authorizedUser } from '../store';
+import { getCurrentUser } from '../store/reducers/currentUser';
+import { authorizedUser } from '../store/reducers/isAuthorized';
 import { Link } from 'react-router-dom';
 
 export class Login extends React.Component {
