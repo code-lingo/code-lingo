@@ -159,7 +159,7 @@ import { isAuthorized } from './reducers/isAuthorized';
 //   }
 // };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   currentLevelQuestions,
   currentUser,
   userScore,

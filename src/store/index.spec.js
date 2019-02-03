@@ -1,7 +1,6 @@
 'use strict';
 
-import { GET_CURRENT_LEVEL_QUESTIONS } from './index';
-import { reducer } from './index';
+import { rootReducer } from './index';
 // import getLevelQuestions from './index';
 
 // Assertions
@@ -68,7 +67,7 @@ describe('Store', () => {
         .map(el => dataFromFirebase[el])
         .sort((a, b) => a.id - b.id);
 
-      const newState = reducer(initialState, {
+      const newState = rootReducer(initialState, {
         type: 'GET_CURRENT_LEVEL_QUESTIONS',
         questions: result,
       });
@@ -77,7 +76,7 @@ describe('Store', () => {
         expect(newState.currentLevelQuestions).to.have.length(2);
       });
 
-      it('returns a new state with the updated ` current level questions`', () => {
+      it('returns a new state with the updated `current level questions`', () => {
         // this should have changed:
         expect(newState.currentLevelQuestions).to.deep.equal(result);
         // this should not have changed:
