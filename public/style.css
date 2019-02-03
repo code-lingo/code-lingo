@@ -1,7 +1,5 @@
-.home {
+/* .home {
   display: flex;
-  /* grid-template-columns: 70% 30%;
-  grid-gap: 20px; */
 }
 
 #skill-tree {
@@ -46,12 +44,7 @@
 }
 
 .level-selector {
-  /* flex-basis: 40%; */
   padding: 20px;
-}
-
-.game-icon {
-  width: 30%;
 }
 
 .green-feedback {
@@ -66,4 +59,391 @@
   border: 1px solid, rgb(247, 176, 176);
   border-radius: 5%;
   color: rgb(110, 68, 68);
+} */
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-main {
+  background-color: #bdbdbd;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+nav {
+  background-color: #607d8b;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+}
+
+.navbar-list {
+  margin-right: 20px;
+}
+
+.navbar-item {
+  display: inline;
+  font-size: 20px;
+  padding: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.active {
+  color: #cddc39;
+}
+
+.auth-method {
+  text-shadow: 2px 2px #757575;
+  color: #cddc39;
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auth-input {
+  height: 35px;
+  margin: 10px;
+  width: 350px;
+}
+
+.auth-label {
+  color: #212121;
+}
+
+.auth-button {
+  width: 150px;
+  background-color: #cddc39;
+  font-size: 25px;
+  align-self: center;
+  margin: 10px;
+  padding: 13px;
+}
+
+.auth-error-message {
+  font-size: 12px;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-redirect-link {
+  text-decoration: none;
+  color: #212121;
+  align-self: center;
+  font-size: 17px;
+}
+
+.progress-bar {
+  position: relative;
+  height: 20px;
+  width: 350px;
+  border-radius: 50px;
+  border: 1px solid #333;
+}
+
+.filler {
+  background: #1da598;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease-in;
+} */
+
+/* new styling */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid red; */
+}
+
+html {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.game-icon {
+  width: 100px;
+}
+
+/* MODULAR STYLE PROPERTIES */
+
+.card {
+  border-radius: 6px;
+  border: 1px solid #433f66;
+  /* box-shadow: 1px 3px 3px rgba(141, 141, 141, 0.868); */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background-color: rgba(255, 255, 255, 0.76);
+  height: 100%;
+}
+
+.card-header {
+  text-decoration: underline;
+  /* color: #433f66; */
+  margin-bottom: 16px;
+  /* padding-bottom: 3px; */
+  /* border-bottom: 2px solid black; */
+}
+
+.border-top {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  width: 90%;
+}
+
+/* NAVBAR */
+
+nav {
+  background-color: #bcb5fa;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 3% 12px 3%;
+}
+
+.navbar-item {
+  margin: 0px 10px;
+}
+
+.navbar-item h2 {
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.navbar-item h2:hover {
+  color: #433f66;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+#title h1 {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* HOME PAGE / LEVEL DISPLAY */
+
+.home {
+  display: flex;
+  justify-content: center;
+  padding: 3%;
+  background-color: rgb(250, 246, 243);
+  min-height: 100vh;
+}
+
+/* SKILL TREE */
+
+#skill-tree {
+  width: 50%;
+  margin-right: 5%;
+  padding: 15px;
+}
+
+#skill-tree a {
+  color: black;
+}
+
+.level-selector {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  padding: 15px;
+}
+
+/* SIDE PANEL */
+
+#sidebar > div {
+  padding: 25px;
+}
+
+#sidebar p {
+  font-size: 16px;
+}
+
+#side-panel-level {
+  padding-bottom: 10px;
+}
+
+#user-score {
+  margin-bottom: 20px;
+}
+
+/* LOGIN/SIGNUP PAGE */
+
+.form {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px 50px;
+  /* text-align: center; */
+}
+
+.form input {
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.form button {
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #433f66;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.form button:hover {
+  background: #2c2a3d;
+}
+
+.form-message p {
+  text-align: center;
+  margin-top: 16px;
+  /* text-decoration: underline; */
+}
+
+/* QUESTIONS */
+
+.question {
+  text-align: center;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px 50px;
+}
+
+.question-submit button {
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #433f66;
+  width: 40%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.question-submit button:hover {
+  background: #2c2a3d;
+}
+
+.answer-option {
+  width: 80%;
+  /* text-transform: uppercase; */
+  font-weight: 700;
+  /* background: #433f66; */
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  /* color: #FFFFFF; */
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 5px;
+}
+
+#green-feedback {
+  background-color: green;
+}
+
+#red-feedback {
+  background-color: red;
+}
+
+/* LEADERBOARD */
+
+#leaderboard {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px 50px;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar {
+  position: relative;
+  height: 20px;
+  border-radius: 50px;
+  border: 1px solid #bbb;
+  margin-bottom: 20px;
+}
+
+.filler {
+  background: #bcb5fa;
+  height: 100%;
+  border-radius: 16px;
+  transition: width 0.2s ease-in;
+  /* padding-bottom: 10px; */
+
 }

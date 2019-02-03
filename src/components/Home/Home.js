@@ -13,7 +13,7 @@ class Home extends Component {
     }
     return (
       <div className="home">
-        <div id="skill-tree">
+        <div id="skill-tree" className='card'>
           <div className="level-selector">
             <Link to="/questions/1">
               <img
@@ -51,7 +51,7 @@ class Home extends Component {
             </Link>
           </div>
         </div>
-        <div>
+        <div id="side-panel">
           <SidePanel />
         </div>
       </div>

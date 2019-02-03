@@ -14,7 +14,7 @@ class Results extends Component {
   render() {
     const { totalAnswers, correctAnswers } = this.props;
     return (
-      <div>
+      <div className='card question'>
         <h2>Great Job!</h2>
         <h3>
           Your score is {correctAnswers.length}/{totalAnswers.length}

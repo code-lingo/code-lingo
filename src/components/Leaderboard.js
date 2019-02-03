@@ -11,8 +11,8 @@ class Leaderboard extends Component {
       return null;
     }
     return (
-      <div>
-        <h1>Leaderboard</h1>
+      <div className='card' id='leaderboard' >
+        <h1 className='card-header'>Leaderboard</h1>
         <table>
           <tbody>
             <tr>
