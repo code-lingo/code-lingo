@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { SidePanel } from './SidePanel';
+import { fetchCurrentLevel } from '../../store';
 
 class Home extends Component {
   componentDidMount() {
     console.log('HOME KNOWS THAT USER IS LOGGED IN:', this.props.currentUser);
+    fetchCurrentLevel(this.props.currentUser);
   }
   render() {
     if (!this.props.currentUser && this.props.isAuthorized) {
@@ -13,7 +15,7 @@ class Home extends Component {
     }
     return (
       <div className="home">
-        <div id="skill-tree" className='card'>
+        <div id="skill-tree" className="card">
           <div className="level-selector">
             <Link to="/questions/1">
               <img

@@ -4,20 +4,30 @@ import loggingMiddleware from 'redux-logger';
 
 import { database } from '../configs/firebase_init';
 
-export const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
-export const ADD_SCORE_TO_LEADERBOARD = 'ADD_SCORE_TO_LEADERBOARD';
+// ACTIONS
+
+const GET_CURRENT_LEVEL_QUESTIONS = 'GET_CURRENT_LEVEL_QUESTIONS';
+const ADD_SCORE_TO_LEADERBOARD = 'ADD_SCORE_TO_LEADERBOARD';
+const GET_CURRENT_LEVEL = 'GET_CURRENT_LEVEL';
 const GET_CURRENT_USER = 'GET_CURRENT_USER';
 const LOG_OUT_USER = 'LOG_OUT_USER';
 const GET_LEADERBOARD = 'GET_LEADERBOARD';
 const AUTH_USER = 'AUTH_USER';
 
-export const getLevelQuestions = questions => ({
+// ACTION CREATORS
+const getLevelQuestions = questions => ({
   type: GET_CURRENT_LEVEL_QUESTIONS,
   questions,
 });
+
 export const getCurrentUser = uid => ({
   type: GET_CURRENT_USER,
   uid,
+});
+
+const getCurrentLevel = uid => ({
+  type: GET_CURRENT_LEVEL,
+  level,
 });
 
 export const logOutUser = () => ({
@@ -39,6 +49,7 @@ export const authorizedUser = isLoggedIn => ({
   isLoggedIn,
 });
 
+// THUNKS
 export const fetchLevelQuestions = levelId => {
   return async dispatch => {
     try {
@@ -56,6 +67,23 @@ export const fetchLevelQuestions = levelId => {
           }
         })
         .catch(error => console.log(error));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
+const fetchCurrentLevel = userId => {
+  return async dispatch => {
+    try {
+      database
+        .ref('users/')
+        .child(userId)
+        .once('value', snapshot => {
+          if (snapshot.val()) {
+            console.log(snapshot.val());
+          }
+        });
     } catch (err) {
       console.error(err);
     }
