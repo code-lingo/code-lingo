@@ -22,8 +22,6 @@ class UserStats extends Component {
       return null;
     }
 
-    console.log('mcrae total score is', this.props.totalScore);
-
     return (
       <div id="user-score" className="card">
         <h3>Current Level:</h3>

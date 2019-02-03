@@ -85,12 +85,13 @@ export const fetchUserTotal = userId => {
       await database.ref('leaderboard/').once('value', snapshot => {
         const data = snapshot.val();
         if (data) {
-          console.log('leaderboard', data);
-          console.log('mcrae id is ', userId);
           const entry = data[userId] || 0;
           const total = entry.score;
-          console.log('mcrae score is', total);
-          dispatch(getUserTotal(total));
+          if (total === undefined) {
+            dispatch(getUserTotal(0));
+          } else {
+            dispatch(getUserTotal(total));
+          }
         }
       });
     } catch (error) {
@@ -109,8 +110,6 @@ export const fetchCurrentLevel = userId => {
           if (snapshot.val()) {
             const level = snapshot.val().currentLevel;
             dispatch(getCurrentLevel(level));
-          } else {
-            console.log('snapshot not defined!');
           }
         });
     } catch (err) {
