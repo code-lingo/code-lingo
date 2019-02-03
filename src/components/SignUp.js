@@ -1,143 +1,140 @@
-import React from 'react';
-import { auth, database } from '../configs/firebase_init';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getCurrentUser } from '../store';
+import React from 'react'
+import { auth, database } from '../configs/firebase_init'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getCurrentUser } from '../store'
 
 class SignUp extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
       email: '',
       password: '',
       username: '',
-      errorMessage: null,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
+      errorMessage: null
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSignUp = this.handleSignUp.bind(this)
   }
 
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.props.getUser(user.uid);
-        this.props.history.push('/');
+        this.props.getUser(user.uid)
+        this.props.history.push('/')
       }
-    });
+    })
   }
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
-    });
+      [event.target.name]: event.target.value
+    })
   }
 
   createUser = (userObj, email, username) => {
     const newUser = {
       username,
       email,
-      currentLevel: 1,
-    };
+      currentLevel: 1
+    }
 
     database
       .ref('users/')
       .child(userObj.uid)
       .set(newUser, error => {
         if (error) {
-          console.log('Unable to add user as a member');
+          console.log('Unable to add user as a member')
         } else {
-          console.log('Succesfully added as a Codelingo member!');
+          console.log('Succesfully added as a Codelingo member!')
         }
-      });
-  };
+      })
+  }
 
   async handleSignUp(event) {
-    const { username, email, password } = this.state;
-    event.preventDefault();
+    const { username, email, password } = this.state
+    event.preventDefault()
     try {
       const validUser = await auth.createUserWithEmailAndPassword(
         email,
         password
-      );
-      await this.createUser(validUser.user, email, username);
-      this.props.getUser(validUser.user.uid);
-      this.setState({ username: '', email: '', password: '' });
-      this.props.history.push('/');
+      )
+      await this.createUser(validUser.user, email, username)
+      this.props.getUser(validUser.user.uid)
+      this.setState({ username: '', email: '', password: '' })
+      this.props.history.push('/')
     } catch (error) {
-      console.log('Error', error);
+      console.log('Error', error)
       this.setState({
         username: '',
         email: '',
         password: '',
-        errorMessage: error.message,
-      });
+        errorMessage: error.message
+      })
     }
   }
   render() {
     return (
-      <div>
-        <h2 className="auth-method">Sign Up</h2>
+      <div className='card form'>
+        <h1 className='auth-method card-header'>Sign Up</h1>
         {this.state.errorMessage && (
-          <p className="auth-error-message">{this.state.errorMessage}</p>
+          <p className='auth-error-message'>{this.state.errorMessage}</p>
         )}
-        <form className="auth-form" onSubmit={this.handleSignUp}>
-          <label className="auth-label">
-            Username:
+        <form className='auth-form' onSubmit={this.handleSignUp}>
+          <label className='auth-label'>
             <input
               required
-              className="auth-input"
-              type="text"
-              name="username"
+              className='auth-input'
+              type='text'
+              name='username'
               value={this.state.username}
               onChange={this.handleChange}
-              placeholder="Input username"
+              placeholder='Username'
             />
           </label>
-          <label className="auth-label">
-            Email:
+          <label className='auth-label'>
             <input
               required
-              className="auth-input"
-              type="email"
-              name="email"
+              className='auth-input'
+              type='email'
+              name='email'
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="Input your email"
+              placeholder='Email'
             />
           </label>
-          <label className="auth-label">
-            Password:
+          <label className='auth-label'>
             <input
               required
-              className="auth-input"
-              type="password"
-              name="password"
+              className='auth-input'
+              type='password'
+              name='password'
               value={this.state.password}
               onChange={this.handleChange}
-              placeholder="Input your password"
+              placeholder='Password'
             />
           </label>
-          <button className="auth-button" type="submit">
+          <button className='auth-button' type='submit'>
             Sign Up
           </button>
-          <Link className="auth-redirect-link" to="/signup">
-            Already have an account? Login here!
-          </Link>
         </form>
+        <Link className='auth-redirect-link form-message' to='/signup'>
+          <p>Already have an account? Login here!</p>
+        </Link>
       </div>
-    );
+    )
   }
 }
 
 const mapToState = state => ({
-  currentUser: state.currentUser,
-});
+  currentUser: state.currentUser
+})
 
 const mapToDispatch = dispatch => ({
-  getUser: id => dispatch(getCurrentUser(id)),
-});
+  getUser: id => dispatch(getCurrentUser(id))
+})
 
 export default connect(
   mapToState,
   mapToDispatch
-)(SignUp);
+)(SignUp)

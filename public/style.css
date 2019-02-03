@@ -208,7 +208,6 @@ h5,
 h6 {
   line-height: 1.2;
   font-family: 'Montserrat', sans-serif;
-
 }
 
 a {
@@ -223,13 +222,38 @@ ul {
   width: 100px;
 }
 
+/* MODULAR STYLE PROPERTIES */
+
+.card {
+  border-radius: 6px;
+  border: 1px solid #433f66;
+  /* box-shadow: 1px 3px 3px rgba(141, 141, 141, 0.868); */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background-color: rgba(255, 255, 255, 0.76);
+  height: 100%;
+}
+
+.card-header {
+  text-decoration: underline;
+  /* color: #433f66; */
+  margin-bottom: 16px;
+  /* padding-bottom: 3px; */
+  /* border-bottom: 2px solid black; */
+}
+
+.border-top {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  width: 90%;
+}
+
 /* NAVBAR */
 
 nav {
   background-color: #bcb5fa;
   display: flex;
   justify-content: space-between;
-  padding: 10px 5% 10px 0;
+  padding: 12px 3% 12px 3%;
 }
 
 .navbar-item {
@@ -238,22 +262,23 @@ nav {
 
 .navbar-item h2 {
   color: white;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.navbar-item h2:hover {
+  color: #433f66;
 }
 
 nav div {
   display: flex;
+  align-items: center;
 }
 
 #title h1 {
-  font-weight: 500;
-  color: white;
-  /* font-style: italic; */
-}
-
-#title {
-  padding-left: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 /* HOME PAGE / LEVEL DISPLAY */
@@ -266,23 +291,12 @@ nav div {
   min-height: 100vh;
 }
 
-.home > div {
-  border-radius: 16px;
-  border: 1px solid #333;
-  box-shadow: 1px 3px 3px rgba(141, 141, 141, 0.868);
-  background-color: rgba(255, 255, 255, 0.76);
-  height: 100%;
-
-}
-
 /* SKILL TREE */
 
 #skill-tree {
   width: 50%;
   margin-right: 5%;
-  padding: 20px 0;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+  padding: 15px;
 }
 
 #skill-tree a {
@@ -300,13 +314,11 @@ nav div {
 
 /* SIDE PANEL */
 
-#user-score {
-  /* background-color: lightsalmon; */
-  /* width: 30%; */
-  padding: 10px;
+#sidebar > div {
+  padding: 25px;
 }
 
-#user-score p {
+#sidebar p {
   font-size: 16px;
 }
 
@@ -314,5 +326,124 @@ nav div {
   padding-bottom: 10px;
 }
 
+#user-score {
+  margin-bottom: 20px;
+}
 
+/* LOGIN/SIGNUP PAGE */
 
+.form {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px 50px;
+  /* text-align: center; */
+}
+
+.form input {
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.form button {
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #433f66;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.form button:hover {
+  background: #2c2a3d;
+}
+
+.form-message p {
+  text-align: center;
+  margin-top: 16px;
+  /* text-decoration: underline; */
+}
+
+/* QUESTIONS */
+
+.question {
+  text-align: center;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px 50px;
+}
+
+.question-submit button {
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #433f66;
+  width: 40%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.question-submit button:hover {
+  background: #2c2a3d;
+}
+
+.answer-option {
+  width: 80%;
+  /* text-transform: uppercase; */
+  font-weight: 700;
+  /* background: #433f66; */
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  /* color: #FFFFFF; */
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 5px;
+}
+
+#green-feedback {
+  background-color: green;
+}
+
+#red-feedback {
+  background-color: red;
+}
+
+/* LEADERBOARD */
+
+#leaderboard {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px 50px;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar {
+  position: relative;
+  height: 20px;
+  border-radius: 50px;
+  border: 1px solid #bbb;
+  margin-bottom: 20px;
+}
+
+.filler {
+  background: #bcb5fa;
+  height: 100%;
+  border-radius: 16px;
+  transition: width 0.2s ease-in;
+  /* padding-bottom: 10px; */
+
+}
