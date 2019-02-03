@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { auth } from './configs/firebase_init';
 import { connect } from 'react-redux';
-=======
-import { Route, Switch } from 'react-router-dom';
->>>>>>> e7104adc70b5c44d934a0822a04541989881a463
 
 import Navbar from './components/Navbar';
 import SignUp from './components/SignUp';
