@@ -68,14 +68,13 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2 className="auth-method">Sign Up</h2>
+      <div className="card form">
+        <h1 className="auth-method card-header">Sign Up</h1>
         {this.state.errorMessage && (
           <p className="auth-error-message">{this.state.errorMessage}</p>
         )}
         <form className="auth-form" onSubmit={this.handleSignUp}>
           <label className="auth-label">
-            Username:
             <input
               required
               className="auth-input"
@@ -83,11 +82,10 @@ class SignUp extends React.Component {
               name="username"
               value={this.state.username}
               onChange={this.handleChange}
-              placeholder="Input username"
+              placeholder="Username"
             />
           </label>
           <label className="auth-label">
-            Email:
             <input
               required
               className="auth-input"
@@ -95,11 +93,10 @@ class SignUp extends React.Component {
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="Input your email"
+              placeholder="Email"
             />
           </label>
           <label className="auth-label">
-            Password:
             <input
               required
               className="auth-input"
@@ -107,16 +104,16 @@ class SignUp extends React.Component {
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
-              placeholder="Input your password"
+              placeholder="Password"
             />
           </label>
           <button className="auth-button" type="submit">
             Sign Up
           </button>
-          <Link className="auth-redirect-link" to="/signup">
-            Already have an account? Login here!
-          </Link>
         </form>
+        <Link className="auth-redirect-link form-message" to="/signup">
+          <p>Already have an account? Login here!</p>
+        </Link>
       </div>
     );
   }

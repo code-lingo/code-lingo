@@ -43,8 +43,8 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2 className="auth-method">Login</h2>
+      <div className="card form">
+        <h1 className="auth-method card-header">Login</h1>
         {this.state.errorMessage && (
           <p className="auth-error-message">{this.state.errorMessage}</p>
         )}
@@ -74,10 +74,10 @@ export class Login extends React.Component {
           <button className="auth-button" type="submit">
             Login
           </button>
-          <Link className="auth-redirect-link" to="/signup">
-            Don't have an account, Sign Up here!
-          </Link>
         </form>
+        <Link className="auth-redirect-link form-message" to="/signup">
+          <p>Don't have an account? Sign Up here!</p>
+        </Link>
       </div>
     );
   }

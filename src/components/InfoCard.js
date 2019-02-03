@@ -9,7 +9,7 @@ const InfoCard = props => {
   // )
 
   return (
-    <div>
+    <div className='card question'>
       <div>{question.description}</div>
       <div style={{ visibility: props.visibility }}>
         <InfoFeedback />

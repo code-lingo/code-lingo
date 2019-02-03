@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { auth } from './configs/firebase_init';
 import { connect } from 'react-redux';

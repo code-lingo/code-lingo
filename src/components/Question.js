@@ -59,7 +59,7 @@ class Question extends Component {
         question.type === 'infoCard')
     ) {
       return (
-        <div>
+        <div className='card question'>
           <ProgressBar progress={this.state.percentage} />
           {question.type === 'infoCard' ? (
             <InfoCard
