@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addLeaderboardScore } from '../store/reducers/userScore'
+import { Link } from 'react-router-dom'
 
 class Results extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class Results extends Component {
 
   render() {
     const { totalAnswers, correctAnswers } = this.props
-    console.log('LEVEL ID', this.props.match.params.levelId)
+    console.log(this.props)
     return (
       <div className="card question">
         <h2>Great Job!</h2>
