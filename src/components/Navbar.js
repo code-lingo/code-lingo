@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { auth } from '../configs/firebase_init';
-import { logOutUser } from '../store/reducers/currentUser';
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { auth } from '../configs/firebase_init'
+import { logOutUser } from '../store/reducers/currentUser'
 
 export class Navbar extends Component {
   async handleSignOut() {
     try {
-      await auth.signOut();
-      this.props.logOutUser();
+      await auth.signOut()
+      this.props.logOutUser()
     } catch (error) {
-      alert('Something went wrong:', error);
+      alert('Something went wrong:', error)
     }
   }
   render() {
@@ -36,28 +36,25 @@ export class Navbar extends Component {
             <NavLink className="navbar-item active" to={'/'}>
               <h2>Home</h2>
             </NavLink>
-            <NavLink className="navbar-item" to={'/leaderboard'}>
-              <h2>Leaderboard</h2>
-            </NavLink>
             <NavLink to="/login" className="navbar-item">
               <h2 onClick={this.handleSignOut.bind(this)}>SignOut</h2>
             </NavLink>
           </div>
         )}
       </nav>
-    );
+    )
   }
 }
 
 const mapToState = state => ({
-  currentUser: state.currentUser,
-});
+  currentUser: state.currentUser
+})
 
 const mapToDispatch = dispatch => ({
-  logOutUser: () => dispatch(logOutUser()),
-});
+  logOutUser: () => dispatch(logOutUser())
+})
 
 export default connect(
   mapToState,
   mapToDispatch
-)(Navbar);
+)(Navbar)
