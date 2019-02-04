@@ -36,24 +36,19 @@ export const fetchScoreFromLeaderboard = userId => {
 export const addLeaderboardScore = (userId, accScore, currentLevel) => {
   return async dispatch => {
     try {
-      // Retrieve the username from 'users' node && update 'currentLevel'
       const user = database.ref('users/').child(userId);
       let username = '';
+
       await user.on('value', snapshot => {
         const data = snapshot.val();
         username = data.username;
         const dblevel = data.currentLevel;
-        console.log('database level is', dblevel);
-        console.log('dblevel is ', dblevel, 'currentLevel is', currentLevel);
+
         if (dblevel === currentLevel) {
           user.update({ currentLevel: dblevel + 1 });
-        } else {
-          console.log(
-            'we skipped the if statement and are not upping the level in the db!'
-          );
         }
       });
-      // Update the user's score on leaderboard
+
       await database
         .ref('leaderboard/')
         .child(userId)
