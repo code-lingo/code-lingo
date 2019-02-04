@@ -42,7 +42,6 @@ class Question extends Component {
     const questions = this.props.questions
     const question = questions[this.state.currentQuestionIndex]
     const answers = this.state.answers
-    const levelId = this.props.match.params.levelId
 
     if (questions.length > 0 && questions.length === answers.length) {
       const totalAnswers = answers.filter(answer => answer !== undefined)
@@ -50,11 +49,7 @@ class Question extends Component {
         .filter(answer => answer !== undefined)
         .filter(answer => answer === true)
       return (
-        <Results
-          correctAnswers={correctAnswers}
-          totalAnswers={totalAnswers}
-          levelId={levelId}
-        />
+        <Results correctAnswers={correctAnswers} totalAnswers={totalAnswers} />
       )
     } else if (
       typeof question === 'object' &&
