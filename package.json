@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "NODE_ENV='test' mocha  \"./src/store/index.spec.js\"  --require @babel/polyfill --require @babel/register",
     "test-react": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
