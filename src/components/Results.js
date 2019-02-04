@@ -13,23 +13,31 @@ class Results extends Component {
 
   render() {
     const { totalAnswers, correctAnswers } = this.props
+    const score = `${correctAnswers.length} / ${totalAnswers.length}`
+
     return (
       <div className="card question">
-        <h2>Great Job!</h2>
-        <h3>
-          Your score is {correctAnswers.length}/{totalAnswers.length}
-        </h3>
-        <h3>
-          <Link to={'/'}>Return to Home</Link>
-        </h3>
+        <h3>Your score is {score}</h3>
+        {correctAnswers.length < 4 ? (
+          <div>
+            <Link to={`/`}>
+              <h3>Try Again!</h3>
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link to={`/`}>
+              <h2>You're on a roll!</h2>
+            </Link>
+          </div>
+        )}
       </div>
     )
   }
 }
 
-const mapState = state => ({
-  currentUser: state.currentUser,
-  currentLevel: state.currentLevel
+const mapState = ({ currentUser }) => ({
+  currentUser: currentUser
 })
 
 const mapDispatch = {
