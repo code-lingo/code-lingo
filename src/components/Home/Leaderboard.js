@@ -16,12 +16,14 @@ class Leaderboard extends Component {
         <table>
           <tbody>
             <tr>
-              <th>Programmers</th>
               <th>Rank</th>
+              <th>Programmers</th>
+              <th>Points</th>
             </tr>
 
             {this.props.leaderboard.map((leader, key) => (
               <tr key={key}>
+                <td>{key + 1}</td>
                 <td>{leader.username}</td>
                 <td>{leader.score}</td>
               </tr>
