@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { addLeaderboardScore } from '../store/reducers/userScore'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addLeaderboardScore } from '../store/reducers/userScore';
+import { Link } from 'react-router-dom';
 
 class Results extends Component {
   componentDidMount() {
     this.props.addLeaderboardScore(
       this.props.currentUser,
-      this.props.correctAnswers.length
-    )
+      this.props.correctAnswers.length,
+      this.props.currentLevel
+    );
   }
 
   render() {
-    const { totalAnswers, correctAnswers } = this.props
+    const { totalAnswers, correctAnswers } = this.props;
     return (
       <div className="card question">
         <h2>Great Job!</h2>
@@ -23,20 +24,20 @@ class Results extends Component {
           <Link to={'/'}>Return to Home</Link>
         </h3>
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
   currentUser: state.currentUser,
-  currentLevel: state.currentLevel
-})
+  currentLevel: state.currentLevel,
+});
 
 const mapDispatch = {
-  addLeaderboardScore
-}
+  addLeaderboardScore,
+};
 
 export default connect(
   mapState,
   mapDispatch
-)(Results)
+)(Results);
