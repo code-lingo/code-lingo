@@ -1,56 +1,60 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { auth } from '../configs/firebase_init'
-import { logOutUser } from '../store/reducers/currentUser'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { auth } from '../configs/firebase_init';
+import { logOutUser } from '../store/reducers/currentUser';
+import { authorizedUser } from '../store/reducers/isAuthorized';
 
 export class Navbar extends Component {
   async handleSignOut() {
     try {
-      await auth.signOut()
-      this.props.logOutUser()
+      await auth.signOut();
+      this.props.logOutUser();
+      this.props.authorizedUser(false);
     } catch (error) {
-      alert('Something went wrong:', error)
+      alert('Something went wrong:', error);
     }
   }
   render() {
     return (
       <nav>
-        <div id='title'>
-          <NavLink className='navbar-item active' to={'/'}>
+        <div id="title">
+          <NavLink className="navbar-item active" to={'/'}>
             <h1>Codelingo</h1>
           </NavLink>
         </div>
         {!this.props.currentUser ? (
           <div>
-            <NavLink className='navbar-item' to={'/login'}>
+            <NavLink className="navbar-item" to={'/login'}>
               <h2>Login</h2>
             </NavLink>
-            <NavLink className='navbar-item' to={'/signup'}>
+            <NavLink className="navbar-item" to={'/signup'}>
               <h2>SignUp</h2>
             </NavLink>
           </div>
         ) : (
           <div>
-            <NavLink to='/login' className='navbar-item'>
+            <NavLink to="/login" className="navbar-item">
               <h2 onClick={this.handleSignOut.bind(this)}>SignOut</h2>
             </NavLink>
           </div>
         )}
       </nav>
-    )
+    );
   }
 }
 
 const mapToState = state => ({
-  currentUser: state.currentUser
-})
+  currentUser: state.currentUser,
+  isAuthorized: state.isAuthorized,
+});
 
-const mapToDispatch = dispatch => ({
-  logOutUser: () => dispatch(logOutUser())
-})
+const mapToDispatch = {
+  logOutUser,
+  authorizedUser,
+};
 
 export default connect(
   mapToState,
   mapToDispatch
-)(Navbar)
+)(Navbar);
