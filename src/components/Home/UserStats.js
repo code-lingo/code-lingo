@@ -25,7 +25,7 @@ class UserStats extends Component {
         <h3>Current Level:</h3>
         <p id="side-panel-level">{this.props.currentLevel}</p>
         <h3>Total Score:</h3>
-        <p>1000</p>
+        <p>{this.props.userScore}</p>
       </div>
     );
   }
@@ -34,7 +34,7 @@ class UserStats extends Component {
 const mapToState = state => ({
   currentUser: state.currentUser,
   currentLevel: state.currentLevel,
-  totalScore: state.totalScore,
+  userScore: state.userScore,
 });
 
 const mapDispatch = {

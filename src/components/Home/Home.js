@@ -61,7 +61,7 @@ class Home extends Component {
           </div>
         </div>
         <div id="side-panel">
-          <SidePanel level={this.props.currentLevel} />
+          <SidePanel />
         </div>
       </div>
     );
