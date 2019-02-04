@@ -13,6 +13,7 @@ class Results extends Component {
 
   render() {
     const { totalAnswers, correctAnswers } = this.props
+    console.log(this.props)
     return (
       <div className="card question">
         <h2>Great Job!</h2>
@@ -22,14 +23,16 @@ class Results extends Component {
         <h3>
           <Link to={'/'}>Return to Home</Link>
         </h3>
+        {/* <h3>
+          <Link to={`/${nextLevel}`}>Go to the next level!</Link>
+        </h3> */}
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  currentUser: state.currentUser,
-  currentLevel: state.currentLevel
+  currentUser: state.currentUser
 })
 
 const mapDispatch = {
