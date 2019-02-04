@@ -270,6 +270,10 @@ nav {
   color: #433f66;
 }
 
+.navbar-item h1:hover {
+  color: #433f66;
+}
+
 nav div {
   display: flex;
   align-items: center;
@@ -279,7 +283,13 @@ nav div {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
+  color: #433f66;
 }
+
+#title h1:hover  {
+  color: white;
+}
+
 
 /* HOME PAGE / LEVEL DISPLAY */
 

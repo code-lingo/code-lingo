@@ -8,16 +8,20 @@ class Home extends Component {
   componentDidMount() {
     console.log('HOME KNOWS THAT USER IS LOGGED IN:', this.props.currentUser);
     const userId = this.props.currentUser;
-    this.props.getLevel(userId);
+    if (userId) {
+      this.props.getLevel(userId);
+    }
   }
 
   componentDidUpdate() {
     const userId = this.props.currentUser;
+
+    console.log('COMPONENTDIDUPDATE');
     this.props.getLevel(userId);
   }
 
   render() {
-    if (!this.props.currentUser && this.props.isAuthorized) {
+    if (!this.props.currentUser && this.props.isAuthorized === false) {
       return <Redirect to="/login" />;
     }
     return (
