@@ -13,7 +13,9 @@ export const fetchLeaderBoard = () => {
       await database.ref('leaderboard/').on('value', snapshot => {
         const data = snapshot.val();
         if (data) {
-          const board = Object.values(data).sort((a, b) => b.score - a.score);
+          const board = Object.values(data)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 10);
           dispatch(getLeaderBoard(board));
         }
       });
