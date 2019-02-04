@@ -15,11 +15,12 @@ class Results extends Component {
   render() {
     const { totalAnswers, correctAnswers } = this.props;
     const score = `${correctAnswers.length} / ${totalAnswers.length}`;
+    const percentage = `${correctAnswers.length / totalAnswers.length}`;
 
     return (
       <div className="card question">
         <h3>Your score is {score}</h3>
-        {correctAnswers.length < 4 ? (
+        {percentage < 0.75 ? (
           <div>
             <Link to={`/`}>
               <h3>Try Again!</h3>
