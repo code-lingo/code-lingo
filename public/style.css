@@ -109,8 +109,8 @@ nav div {
   justify-content: center;
   padding: 3%;
   /* background: linear-gradient(#bcb5fa, #433f66); */
-  background:  #ddd;
-
+  /* background:  #ddd; */
+  background-color: #eeeeff;
   min-height: 100vh;
 }
 
@@ -284,10 +284,11 @@ nav div {
     /* border: 1px solid #433f663b; */
     border: none;
     box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.90);
   }
   .home {
     flex-direction: column;
-    /* background-color: white; */
+
   }
   .home div {
     padding: 0;
@@ -309,5 +310,8 @@ nav div {
   .question {
     padding: 20px;
     margin: 0;
+  }
+  #skill-tree div {
+    padding: 10px;
   }
 }
