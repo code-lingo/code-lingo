@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 class Results extends Component {
   componentDidMount() {
+    console.log('results component DID mount!!!!!');
     this.props.addLeaderboardScore(
       this.props.currentUser,
       this.props.correctAnswers.length,
@@ -13,6 +14,7 @@ class Results extends Component {
   }
 
   render() {
+    console.log('i am render!  ');
     const { totalAnswers, correctAnswers } = this.props;
     const score = `${correctAnswers.length} / ${totalAnswers.length}`;
     const percentage = `${correctAnswers.length / totalAnswers.length}`;
@@ -38,8 +40,9 @@ class Results extends Component {
   }
 }
 
-const mapState = ({ currentUser }) => ({
-  currentUser: currentUser,
+const mapState = state => ({
+  currentUser: state.currentUser,
+  currentLevel: state.currentLevel,
 });
 
 const mapDispatch = {
