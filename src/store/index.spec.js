@@ -138,7 +138,7 @@ describe('Store', () => {
         expect(newState.leaderboard).to.deep.equal(result)
       })
       it('returns a new state with leaderboard fetched from "database" ', () => {
-        expect(newState.leaderboard).to.have.length(2)
+        expect(newState.leaderboard).to.have.length(1)
       })
 
       it('does not modify the previous state', () => {
