@@ -24,6 +24,7 @@ class UserStats extends Component {
 
     return (
       <div id="user-score" className="card">
+        <h1 className="card-header">Stats</h1>
         <h3>Current Level:</h3>
         <p id="side-panel-level">{this.props.currentLevel}</p>
         <h3>Total Score:</h3>
