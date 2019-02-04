@@ -286,10 +286,9 @@ nav div {
   color: #433f66;
 }
 
-#title h1:hover  {
+#title h1:hover {
   color: white;
 }
-
 
 /* HOME PAGE / LEVEL DISPLAY */
 
@@ -424,11 +423,21 @@ nav div {
 }
 
 #green-feedback {
+  margin-top: 10px;
   background-color: green;
 }
 
 #red-feedback {
+  margin-top: 10px;
   background-color: red;
+}
+
+.reveal-info {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 /* LEADERBOARD */
@@ -455,5 +464,4 @@ nav div {
   border-radius: 16px;
   transition: width 0.2s ease-in;
   /* padding-bottom: 10px; */
-
 }
