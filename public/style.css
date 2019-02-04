@@ -238,12 +238,12 @@ nav div {
 
 #green-feedback {
   margin-top: 10px;
-  background-color: green;
+  background-color: #b8d8ba;
 }
 
 #red-feedback {
   margin-top: 10px;
-  background-color: red;
+  background-color: #ef959d;
 }
 
 .reveal-info {

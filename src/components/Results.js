@@ -28,8 +28,9 @@ class Results extends Component {
           </div>
         ) : (
           <div>
-            <Link to={`/`}>
-              <h2>You're on a roll!</h2>
+            <div className="border-top" />
+            <Link className="question-submit" to={`/`}>
+              <button type="submit">You're on a roll!</button>
             </Link>
           </div>
         )}
