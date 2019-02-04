@@ -41,7 +41,7 @@ ul {
   /* border: 1px solid #433f663b; */
   /* box-shadow: 1px 3px 3px rgba(141, 141, 141, 0.868); */
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.04);
-  background-color: rgba(255, 255, 255, 0.50);
+  background-color: rgba(255, 255, 255, 0.5);
   height: 100%;
 }
 
@@ -237,11 +237,21 @@ nav div {
 }
 
 #green-feedback {
+  margin-top: 10px;
   background-color: green;
 }
 
 #red-feedback {
+  margin-top: 10px;
   background-color: red;
+}
+
+.reveal-info {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  font-size: 15px;
+  margin-top: 5px;
 }
 
 /* LEADERBOARD */
@@ -284,11 +294,10 @@ nav div {
     /* border: 1px solid #433f663b; */
     border: none;
     box-shadow: none;
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .home {
     flex-direction: column;
-
   }
   .home div {
     padding: 0;

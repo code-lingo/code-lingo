@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const InfoFeedback = ({ reveal }) => {
-  return <div>{reveal}</div>;
+  return <div className="reveal-info">{reveal}</div>;
 };
