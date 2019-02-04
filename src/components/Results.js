@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { addLeaderboardScore } from '../store/reducers/userScore'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addLeaderboardScore } from '../store/reducers/userScore';
+import { Link } from 'react-router-dom';
 
 class Results extends Component {
   componentDidMount() {
@@ -9,13 +9,13 @@ class Results extends Component {
       this.props.currentUser,
       this.props.correctAnswers.length,
       this.props.currentLevel
-    )
+    );
   }
 
   render() {
-    const { totalAnswers, correctAnswers } = this.props
-    const score = `${correctAnswers.length} / ${totalAnswers.length}`
-    const percentage = `${correctAnswers.length / totalAnswers.length}`
+    const { totalAnswers, correctAnswers } = this.props;
+    const score = `${correctAnswers.length} / ${totalAnswers.length}`;
+    const percentage = `${correctAnswers.length / totalAnswers.length}`;
 
     return (
       <div className="card question">
@@ -32,21 +32,25 @@ class Results extends Component {
             <button type="submit">You're on a roll!</button>
           </Link>
         )}
+        <img
+          src="https://media.giphy.com/media/3o85g2SLLmkp9oyjle/giphy.gif"
+          alt="questioning cat"
+        />
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
   currentUser: state.currentUser,
-  currentLevel: state.currentLevel
-})
+  currentLevel: state.currentLevel,
+});
 
 const mapDispatch = {
-  addLeaderboardScore
-}
+  addLeaderboardScore,
+};
 
 export default connect(
   mapState,
   mapDispatch
-)(Results)
+)(Results);
