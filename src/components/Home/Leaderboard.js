@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { fetchLeaderBoard } from '../store/reducers/leaderboard';
 import { connect } from 'react-redux';
+import { fetchLeaderBoard } from '../../store/reducers/leaderboard';
 
 class Leaderboard extends Component {
   componentDidMount() {
