@@ -13,7 +13,7 @@ export const fetchCurrentLevel = userId => {
       await database
         .ref('users/')
         .child(userId)
-        .once('value', snapshot => {
+        .on('value', snapshot => {
           const data = snapshot.val();
           if (data) {
             const level = data.currentLevel;
