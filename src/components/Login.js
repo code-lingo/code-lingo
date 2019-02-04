@@ -50,7 +50,6 @@ export class Login extends React.Component {
           <p className="auth-error-message">{this.state.errorMessage}</p>
         )}
         <form className="auth-form" onSubmit={this.handleLogin}>
-          <label className="auth-label">Email:</label>
           <input
             required
             className="auth-input"
@@ -58,10 +57,9 @@ export class Login extends React.Component {
             name="email"
             value={this.state.email}
             onChange={this.handleChange}
-            placeholder="Input your email"
+            placeholder="Email"
           />
 
-          <label className="auth-label">Password:</label>
           <input
             required
             className="auth-input"
@@ -69,7 +67,7 @@ export class Login extends React.Component {
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
-            placeholder="Input your password"
+            placeholder="Password"
           />
 
           <button className="auth-button" type="submit">

@@ -45,20 +45,7 @@ const MultipleChoice = props => {
           })}
         </div>
       )}
-      {/* <div>
-        {answers.map((el, index) => {
-          return (
-            <div key={index}>
-              <button
-                className="answer-option"
-                onClick={() => props.handleChange(el)}
-              >
-                <Highlight language="javascript">{el.val}</Highlight>
-              </button>
-            </div>
-          );
-        })}
-      </div> */}
+
       <div className="border-top" />
       <div className="question-submit">
         {props.visibility === 'hidden' ? (

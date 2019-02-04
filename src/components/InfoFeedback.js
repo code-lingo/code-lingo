@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const InfoFeedback = () => {
-  return <div>Some JS information here</div>;
+export const InfoFeedback = ({ reveal }) => {
+  return <div className="reveal-info">{reveal}</div>;
 };
