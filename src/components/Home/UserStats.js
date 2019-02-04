@@ -18,8 +18,6 @@ class UserStats extends Component {
   }
 
   render() {
-    console.log('current level', this.props.currentLevel);
-    console.log('user score is', this.props.userScore);
     if (!this.props.currentLevel.length === 0) {
       return null;
     }
