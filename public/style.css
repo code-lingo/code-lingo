@@ -279,8 +279,8 @@ nav div {
   /* text-transform: uppercase; */
   font-weight: 700;
   /* background: #bcb5fa; */
-  border: 2px solid #bcb5fa;
-  background-color: white !important;
+  border: 2px solid #E9E8F7;
+  background-color: #E9E8F7;
   width: 100%;
   /* border: 0; */
   padding: 15px;
@@ -291,8 +291,8 @@ nav div {
   margin: 5px;
 }
 
-.answer-option:active {
-  background-color: #bcb5fa;
+.answer-group {
+  padding-top: 20px;
 }
 
 #green-feedback {

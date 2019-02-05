@@ -14,7 +14,7 @@ const MultipleChoice = props => {
       {question.snippet ? (
         <Fragment>
           <Highlight language='javascript'>{question.snippet}</Highlight>
-          <div>
+          <div className='answer-group'>
             {answers.map((el, index) => {
               return (
                 <button
@@ -29,7 +29,7 @@ const MultipleChoice = props => {
           </div>
         </Fragment>
       ) : (
-        <div>
+        <div className='answer-group'>
           {answers.map((el, index) => {
             return (
               <div key={index}>
