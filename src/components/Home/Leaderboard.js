@@ -14,8 +14,11 @@ class Leaderboard extends Component {
       <div className="card" id="leaderboard">
         <h1 className="card-header">Leaderboard</h1>
         <table id="leaderboard-table">
+          <tbody>
             <tr>
-              <th><h4>Rank</h4></th>
+              <th>
+                <h4>Rank</h4>
+              </th>
               <th>Programmers</th>
               <th>Points</th>
             </tr>
@@ -27,6 +30,7 @@ class Leaderboard extends Component {
                 <td>{leader.score}</td>
               </tr>
             ))}
+          </tbody>
         </table>
       </div>
     );

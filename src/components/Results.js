@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addLeaderboardScore } from '../store/reducers/userScore';
+import { calculateCurrentStreak } from '../store/reducers/streak';
+
 import { Link } from 'react-router-dom';
 
 class Results extends Component {
@@ -10,6 +12,8 @@ class Results extends Component {
       this.props.correctAnswers.length,
       this.props.levelId
     );
+
+    this.props.calculateCurrentStreak(this.props.currentUser);
   }
 
   render() {
@@ -53,6 +57,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   addLeaderboardScore,
+  calculateCurrentStreak,
 };
 
 export default connect(
