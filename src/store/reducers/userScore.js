@@ -33,7 +33,7 @@ export const fetchScoreFromLeaderboard = userId => {
   };
 };
 
-export const addLeaderboardScore = (userId, accScore, currentLevel) => {
+export const addLeaderboardScore = (userId, accScore, levelId) => {
   return async dispatch => {
     try {
       const user = database.ref('users/').child(userId);
@@ -43,8 +43,7 @@ export const addLeaderboardScore = (userId, accScore, currentLevel) => {
         const data = snapshot.val();
         username = data.username;
         const dblevel = data.currentLevel;
-
-        if (dblevel === currentLevel) {
+        if (dblevel === levelId * 1) {
           user.update({ currentLevel: dblevel + 1 });
         }
       });

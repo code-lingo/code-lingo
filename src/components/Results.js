@@ -8,7 +8,7 @@ class Results extends Component {
     this.props.addLeaderboardScore(
       this.props.currentUser,
       this.props.correctAnswers.length,
-      this.props.currentLevel
+      this.props.levelId
     );
   }
 
@@ -26,16 +26,22 @@ class Results extends Component {
             <Link className="question-submit" to={`/`}>
               <button type="submit">Try Again!</button>
             </Link>
+            <img
+              src="https://media.giphy.com/media/wKFY1XaNEainm/giphy.gif"
+              alt="questioning cat"
+            />
           </div>
         ) : (
-          <Link className="question-submit" to={`/`}>
-            <button type="submit">You're on a roll!</button>
-          </Link>
+          <React.Fragment>
+            <Link className="question-submit" to={`/`}>
+              <button type="submit">You're on a roll!</button>
+            </Link>
+            <img
+              src="https://media.giphy.com/media/3o85g2SLLmkp9oyjle/giphy.gif"
+              alt="rolling dude"
+            />
+          </React.Fragment>
         )}
-        <img
-          src="https://media.giphy.com/media/3o85g2SLLmkp9oyjle/giphy.gif"
-          alt="questioning cat"
-        />
       </div>
     );
   }
@@ -43,7 +49,6 @@ class Results extends Component {
 
 const mapState = state => ({
   currentUser: state.currentUser,
-  currentLevel: state.currentLevel,
 });
 
 const mapDispatch = {

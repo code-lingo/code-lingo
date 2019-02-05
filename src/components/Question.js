@@ -49,7 +49,11 @@ class Question extends Component {
         .filter(answer => answer !== undefined)
         .filter(answer => answer === true);
       return (
-        <Results correctAnswers={correctAnswers} totalAnswers={totalAnswers} />
+        <Results
+          correctAnswers={correctAnswers}
+          totalAnswers={totalAnswers}
+          levelId={this.props.match.params.levelId}
+        />
       );
     } else if (
       typeof question === 'object' &&
