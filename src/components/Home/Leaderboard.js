@@ -13,10 +13,9 @@ class Leaderboard extends Component {
     return (
       <div className="card" id="leaderboard">
         <h1 className="card-header">Leaderboard</h1>
-        <table>
-          <tbody>
+        <table id="leaderboard-table">
             <tr>
-              <th>Rank</th>
+              <th><h4>Rank</h4></th>
               <th>Programmers</th>
               <th>Points</th>
             </tr>
@@ -28,7 +27,6 @@ class Leaderboard extends Component {
                 <td>{leader.score}</td>
               </tr>
             ))}
-          </tbody>
         </table>
       </div>
     );
