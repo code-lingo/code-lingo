@@ -1,31 +1,30 @@
-import React, { Fragment } from 'react';
-import QuestionCreator from './QuestionCreator';
-import { Feedback } from './Feedback';
-import Highlight from 'react-highlight';
+import React, { Fragment } from 'react'
+import QuestionCreator from './QuestionCreator'
+import { Feedback } from './Feedback'
+import Highlight from 'react-highlight'
 
 const MultipleChoice = props => {
-  const question = props.question;
+  const question = props.question
   const answers = Object.values(question).filter(a =>
     a.hasOwnProperty('isCorrect')
-  );
+  )
   return (
     <div>
       <div>{question.description}</div>
       {question.snippet ? (
         <Fragment>
-          <Highlight language="javascript">{question.snippet}</Highlight>
+          <Highlight language='javascript'>{question.snippet}</Highlight>
           <div>
             {answers.map((el, index) => {
               return (
-                <div key={index}>
-                  <button
-                    className="answer-option"
-                    onClick={() => props.handleChange(el)}
-                  >
-                    {el.val}
-                  </button>
-                </div>
-              );
+                <button
+                  key={index}
+                  className='answer-option'
+                  onClick={() => props.handleChange(el)}
+                >
+                  {el.val}
+                </button>
+              )
             })}
           </div>
         </Fragment>
@@ -35,19 +34,19 @@ const MultipleChoice = props => {
             return (
               <div key={index}>
                 <button
-                  className="answer-option"
+                  className='answer-option'
                   onClick={() => props.handleChange(el)}
                 >
-                  <Highlight language="javascript">{el.val}</Highlight>
+                  <Highlight language='javascript'>{el.val}</Highlight>
                 </button>
               </div>
-            );
+            )
           })}
         </div>
       )}
 
-      <div className="border-top" />
-      <div className="question-submit">
+      <div className='border-top' />
+      <div className='question-submit'>
         {props.visibility === 'hidden' ? (
           <button
             disabled={
@@ -65,7 +64,7 @@ const MultipleChoice = props => {
         <Feedback answer={props.selectedAnswer} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default QuestionCreator(MultipleChoice);
+export default QuestionCreator(MultipleChoice)
