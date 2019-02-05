@@ -23,23 +23,23 @@ class Results extends Component {
         <div className="border-top" />
         {percentage < 0.75 ? (
           <div>
-            <Link className="question-submit" to={`/`}>
-              <button type="submit">Try Again!</button>
-            </Link>
             <img
               src="https://media.giphy.com/media/wKFY1XaNEainm/giphy.gif"
               alt="questioning cat"
             />
+            <Link className="question-submit" to={`/`}>
+              <button type="submit">Try Again!</button>
+            </Link>
           </div>
         ) : (
           <React.Fragment>
-            <Link className="question-submit" to={`/`}>
-              <button type="submit">You're on a roll!</button>
-            </Link>
             <img
               src="https://media.giphy.com/media/3o85g2SLLmkp9oyjle/giphy.gif"
               alt="rolling dude"
             />
+            <Link className="question-submit" to={`/`}>
+              <button type="submit">You're on a roll!</button>
+            </Link>
           </React.Fragment>
         )}
       </div>
