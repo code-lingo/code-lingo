@@ -2,18 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../App';
 import { Navbar } from './Navbar';
-import { Provider } from 'react-redux';
-import store from '../store';
-import {
-  BrowserRouter as Router,
-  MemoryRouter,
-  NavLink,
-} from 'react-router-dom';
-// Testing packages
-import { configure, shallow, mount } from 'enzyme';
+import configureStore from 'redux-mock-store';
+import { NavLink } from 'react-router-dom';
+// Testing libraries
+import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import sinon, { spy, mock } from 'sinon';
-import chai, { expect, assert } from 'chai';
+import sinon from 'sinon';
+import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 // Test set-up
 chai.use(sinonChai);
@@ -21,44 +16,42 @@ configure({ adapter: new Adapter() });
 sinon.assert.expose(chai.assert, { prefix: '' });
 
 describe('/Navbar', () => {
-  const wrapper = mount(
-    <Provider store={store}>
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>
-    </Provider>
-  );
+  const inititalState = {};
+  const mockStore = configureStore();
+  let wrapper;
+  let store;
+
+  beforeEach(() => {
+    store = mockStore(inititalState);
+    wrapper = shallow(<Navbar store={store} />);
+  });
 
   it('renders Navbar correctly', () => {
     expect(
       wrapper.contains(
-        <NavLink className="navbar-item active" to={'/'}>
-          Home
-        </NavLink>
-      )
-    ).to.equal(true);
-    expect(
-      wrapper.contains(
         <NavLink className="navbar-item" to={'/login'}>
-          Login
+          <h2>Login</h2>
         </NavLink>
       )
     ).to.equal(true);
     expect(
       wrapper.contains(
         <NavLink className="navbar-item" to={'/signup'}>
-          SignUp
+          <h2>SignUp</h2>
         </NavLink>
       )
     ).to.equal(true);
   });
+});
 
-  xit('fires singout button', () => {
-    const navbarComponent = shallow(<Navbar />);
-    const instance = navbarComponent.instance();
+describe('Signout', () => {
+  it('users can logout from the Navbar', () => {
+    const currentUser = 'lasdkfj90usdflkj';
+    const wrapper = shallow(<Navbar currentUser={currentUser} />);
+    const instance = wrapper.instance();
     const handleSignOutSpy = sinon.spy(instance, 'handleSignOut');
     instance.forceUpdate();
-    navbarComponent.find('form').simulate('submit');
+    wrapper.find('h2').simulate('click');
     sinon.assert.calledOnce(handleSignOutSpy);
   });
 });
