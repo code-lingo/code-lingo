@@ -291,6 +291,10 @@ nav div {
   margin: 5px;
 }
 
+.active-button {
+  background-color: #bcb5fa !important;
+}
+
 .answer-group {
   padding-top: 20px;
 }
@@ -396,3 +400,6 @@ nav div {
     background-color: #f5f5ff;
   }
 }
+
+
+
