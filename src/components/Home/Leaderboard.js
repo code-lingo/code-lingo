@@ -12,7 +12,7 @@ class Leaderboard extends Component {
     }
     return (
       <div className="card" id="leaderboard">
-        <h1 className="card-header">Leaderboard</h1>
+        <h2 className="card-header">Leaderboard</h2>
         <table id="leaderboard-table">
           <tbody>
             <tr>

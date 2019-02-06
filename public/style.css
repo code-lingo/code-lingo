@@ -205,6 +205,7 @@ nav div {
 #leaderboard-table {
   border-collapse: collapse;
   width: 100%;
+  font-size: 16px;
 }
 
 #leaderboard-table td,
@@ -417,6 +418,9 @@ nav div {
   #leaderboard-table td,
   #leaderboard-table th {
     padding: 10px 0;
+  }
+  #leaderboard-table tr {
+    font-size: 16px;
   }
   /* .card {
     border-radius: 0;

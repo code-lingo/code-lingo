@@ -26,7 +26,7 @@ class UserStats extends Component {
 
     return (
       <div id="user-score" className="card">
-        <h2 className="card-header">Wombat Stats</h2>
+        <h2 className="card-header">Coder Stats</h2>
         <div className="stats-container">
           <div className="stats">
             <img
