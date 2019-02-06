@@ -6,7 +6,7 @@ export const Feedback = ({ answer }) => {
       {answer.isCorrect ? (
         <div id="green-feedback">
           <h3>Great Job!</h3>
-          <p>{answer.val} is the correct answer!!</p>
+          <p>{answer.val} is the correct answer!</p>
         </div>
       ) : (
         <div id="red-feedback">
