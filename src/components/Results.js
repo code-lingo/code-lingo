@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { addLeaderboardScore } from '../store/reducers/userScore'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addLeaderboardScore } from '../store/reducers/userScore';
+import { calculateCurrentStreak } from '../store/reducers/streak';
+
+import { Link } from 'react-router-dom';
 
 class Results extends Component {
   componentDidMount() {
@@ -9,13 +11,15 @@ class Results extends Component {
       this.props.currentUser,
       this.props.correctAnswers.length,
       this.props.levelId
-    )
+    );
+
+    this.props.calculateCurrentStreak(this.props.currentUser);
   }
 
   render() {
-    const { totalAnswers, correctAnswers } = this.props
-    const score = `${correctAnswers.length} / ${totalAnswers.length}`
-    const percentage = `${correctAnswers.length / totalAnswers.length}`
+    const { totalAnswers, correctAnswers } = this.props;
+    const score = `${correctAnswers.length} / ${totalAnswers.length}`;
+    const percentage = `${correctAnswers.length / totalAnswers.length}`;
 
     return (
       <div className="card question">
@@ -44,19 +48,20 @@ class Results extends Component {
           </React.Fragment>
         )}
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
-  currentUser: state.currentUser
-})
+  currentUser: state.currentUser,
+});
 
 const mapDispatch = {
-  addLeaderboardScore
-}
+  addLeaderboardScore,
+  calculateCurrentStreak,
+};
 
 export default connect(
   mapState,
   mapDispatch
-)(Results)
+)(Results);

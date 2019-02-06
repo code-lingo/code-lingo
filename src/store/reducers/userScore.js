@@ -33,13 +33,14 @@ export const fetchScoreFromLeaderboard = userId => {
   };
 };
 
+// this only gets called when you earn points (aka when the results component mounts)
 export const addLeaderboardScore = (userId, accScore, levelId) => {
   return async dispatch => {
     try {
       const user = database.ref('users/').child(userId);
       let username = '';
 
-      await user.on('value', snapshot => {
+      await user.once('value', snapshot => {
         const data = snapshot.val();
         username = data.username;
         const dblevel = data.currentLevel;

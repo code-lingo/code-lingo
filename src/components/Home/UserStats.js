@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCurrentLevel } from '../../store/reducers/currentLevel';
 import { fetchScoreFromLeaderboard } from '../../store/reducers/userScore';
+import { fetchCurrentStreak } from '../../store/reducers/streak';
 
 class UserStats extends Component {
   componentDidMount() {
     const userId = this.props.currentUser;
     this.props.fetchCurrentLevel(userId);
     this.props.fetchScoreFromLeaderboard(userId);
+    this.props.fetchCurrentStreak(userId);
   }
 
   componentDidUpdate() {
@@ -24,14 +26,36 @@ class UserStats extends Component {
 
     return (
       <div id="user-score" className="card">
-        <h1 className="card-header">Stats</h1>
-        <div className='stats'>
-          <h3>Current Level:</h3>
-          <p id="side-panel-level">{this.props.currentLevel}</p>
-        </div>
-        <div className='stats'>
-          <h3>Total Score:</h3>
-          <p>{this.props.userScore}</p>
+        <h2 className="card-header">Coder Stats</h2>
+        <div className="stats-container">
+          <div className="stats">
+            <img
+              className="stats-icon"
+              src="/assets/level_crown.png"
+              alt="Star"
+            />
+            <h3 className="stats-text">Level: </h3>
+            <h3 className="stats-text">{this.props.currentLevel}</h3>
+          </div>
+          <div className="stats">
+            <img
+              className="stats-icon"
+              src="/assets/score_star.png"
+              alt="Star"
+            />
+
+            <h3 className="stats-text">Score: </h3>
+            <h3 className="stats-text">{this.props.userScore}</h3>
+          </div>
+          <div className="stats">
+            <img
+              className="stats-icon"
+              src="/assets/streak_flame.png"
+              alt="Star"
+            />
+            <h3 className="stats-text">Streak: </h3>{' '}
+            <h3 className="stats-text"> {this.props.streak}</h3>
+          </div>
         </div>
       </div>
     );
@@ -42,11 +66,13 @@ const mapToState = state => ({
   currentUser: state.currentUser,
   currentLevel: state.currentLevel,
   userScore: state.userScore,
+  streak: state.streak,
 });
 
 const mapDispatch = {
   fetchCurrentLevel,
   fetchScoreFromLeaderboard,
+  fetchCurrentStreak,
 };
 
 export default connect(
