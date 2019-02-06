@@ -5,9 +5,9 @@ import { SidePanel } from './SidePanel';
 import { fetchCurrentLevel } from '../../store/reducers/currentLevel';
 
 class Home extends Component {
-  componentDidMount() {
-    console.log('HOME KNOWS THAT USER IS LOGGED IN:', this.props.currentUser);
+  async componentDidMount() {
     const userId = this.props.currentUser;
+
     if (userId) {
       this.props.getLevel(userId);
     }
@@ -15,8 +15,6 @@ class Home extends Component {
 
   componentDidUpdate() {
     const userId = this.props.currentUser;
-
-    console.log('COMPONENTDIDUPDATE');
     this.props.getLevel(userId);
   }
 

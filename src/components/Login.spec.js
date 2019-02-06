@@ -38,19 +38,15 @@ describe('/Login', () => {
   });
 
   it('renders the Login style & format correctly', () => {
-    expect(wrapper.find('h2').text()).to.equal('Login');
+    expect(wrapper.find('h1').text()).to.equal('Login');
     expect(wrapper.find('input')).to.have.lengthOf(2);
     expect(wrapper.find('.auth-input')).to.have.lengthOf(2);
   });
 
   it('renders a form', () => {
-    expect(wrapper.find('input')).to.have.lengthOf(2);
-    expect(
-      wrapper.contains(<label className="auth-label">Email:</label>)
-    ).to.equal(true);
-    expect(
-      wrapper.contains(<label className="auth-label">Password:</label>)
-    ).to.equal(true);
+    const loginComponent = shallow(<Login />);
+    expect(loginComponent.find('input')).to.have.lengthOf(2);
+    expect(loginComponent.find('button')).to.have.lengthOf(1);
   });
 
   it('it fires form submit', () => {
