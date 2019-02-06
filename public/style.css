@@ -279,8 +279,8 @@ nav div {
   /* text-transform: uppercase; */
   font-weight: 700;
   /* background: #bcb5fa; */
-  border: 2px solid #E9E8F7;
-  background-color: #E9E8F7;
+  border: 2px solid #e9e8f7;
+  background-color: #e9e8f7;
   width: 100%;
   /* border: 0; */
   padding: 15px;
@@ -316,7 +316,7 @@ nav div {
 .reveal-info {
   /* border: 1px solid #444; */
   color: white;
-  background-color: #433F66;
+  background-color: #433f66;
   /* font-size: 15px; */
   margin-top: 5px;
   padding: 10px;
@@ -338,6 +338,12 @@ nav div {
   border-radius: 16px;
   transition: width 0.2s ease-in;
   /* padding-bottom: 10px; */
+}
+
+.results-image {
+  margin-top: 0;
+  object-fit: contain;
+  width: 100%;
 }
 
 /* MEDIA QUERIES */
