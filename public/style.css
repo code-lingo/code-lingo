@@ -281,9 +281,9 @@ nav div {
 
 .about-images {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding: 15px;
 }
 
