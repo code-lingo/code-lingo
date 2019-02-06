@@ -90,6 +90,15 @@ nav {
   color: #433f66;
 }
 
+.navbar-image {
+  height: 23px;
+  padding-right: 10px;
+}
+
+.navbar-headline {
+  display: flex;
+}
+
 nav div {
   display: flex;
   align-items: center;
