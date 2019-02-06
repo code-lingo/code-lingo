@@ -29,6 +29,7 @@ class SignUp extends React.Component {
       username,
       email,
       currentLevel: 1,
+      streak: 0,
     };
 
     database
