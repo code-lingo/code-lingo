@@ -45,25 +45,10 @@ describe('/Navbar', () => {
 });
 
 describe('Signout', () => {
-  // const inititalState = {
-  //   currentUser: 'lasdkfj90usdflkj',
-  // };
-  // const mockStore = configureStore();
-  // let wrapper;
-  // let store;
-
-  // beforeEach(() => {
-  //   store = mockStore(inititalState);
-  // wrapper = shallow(<Navbar store={store} />);
-  // });
-
   it('users can logout from the Navbar', () => {
     const currentUser = 'lasdkfj90usdflkj';
     const wrapper = shallow(<Navbar currentUser={currentUser} />);
-    // const navbarComponent = shallow(<Navbar />);
-    console.log(wrapper.find('h2').get(2));
     const instance = wrapper.instance();
-    console.log('THIS IS THE INSTANCE', instance);
     const handleSignOutSpy = sinon.spy(instance, 'handleSignOut');
     instance.forceUpdate();
     wrapper.find('h2').simulate('click');
