@@ -153,10 +153,6 @@ nav div {
   font-size: 16px;
 }
 
-#side-panel-level {
-  padding-bottom: 10px;
-}
-
 #user-score {
   margin-bottom: 20px;
   text-align: center;
@@ -165,6 +161,7 @@ nav div {
 .stats {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .stats p {
@@ -279,8 +276,8 @@ nav div {
   /* text-transform: uppercase; */
   font-weight: 700;
   /* background: #bcb5fa; */
-  border: 2px solid #E9E8F7;
-  background-color: #E9E8F7;
+  border: 2px solid #e9e8f7;
+  background-color: #e9e8f7;
   width: 100%;
   /* border: 0; */
   padding: 15px;
@@ -312,7 +309,7 @@ nav div {
 .reveal-info {
   /* border: 1px solid #444; */
   color: white;
-  background-color: #433F66;
+  background-color: #433f66;
   /* font-size: 15px; */
   margin-top: 5px;
   padding: 10px;
