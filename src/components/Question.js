@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import NProgress from 'nprogress';
 import { fetchLevelQuestions } from '../store/reducers/currentLevelQuestions';
 import MultipleChoice from './MultipleChoice';
 import ProgressBar from './ProgressBar/ProgressBar';
@@ -21,7 +22,9 @@ class Question extends Component {
   componentDidMount() {
     // grab the level from the URL
     const levelId = this.props.match.params.levelId;
+    NProgress.start();
     this.props.getQuestions(levelId);
+    NProgress.done();
   }
 
   submitAnswer(answer) {

@@ -34,10 +34,6 @@ ul {
   list-style: none;
 }
 
-.game-icon {
-  width: 100px;
-}
-
 /* MODULAR STYLE PROPERTIES */
 
 .card {
@@ -133,7 +129,12 @@ nav div {
 #skill-tree {
   width: 50%;
   margin-right: 5%;
-  padding: 25px 65px;
+  padding: 45px 85px;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-row-gap: 40px;
+  grid-column-gap: 50px;
 }
 
 #skill-tree a {
@@ -144,9 +145,40 @@ nav div {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   text-align: center;
-  padding: 15px;
+  /* padding: 15px 55px; */
+}
+
+.level-selector h3 {
+  padding-top: 16px;
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+.game-icon {
+  width: 70%;
+  height: 70%;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+  /* margin: 15px; */
+  padding: 20px;
+}
+
+.icon-background-circle {
+  background: #bcb5fa77;
+  border-radius: 150px;
+  height: 250px;
+  width: 250px;
+  /* border: 2px solid black; */
+  /* border: 1px solid orange; */
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.icon-background-circle:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* SIDE PANEL */
@@ -348,6 +380,10 @@ nav div {
   margin: 5px;
 }
 
+.active-button {
+  background-color: #bcb5fa !important;
+}
+
 .answer-group {
   padding-top: 20px;
 }
@@ -475,5 +511,23 @@ nav div {
   }
   .home {
     background-color: #f5f5ff;
+  }
+  #skill-tree {
+    grid-template-columns: 1fr;
+  }
+  .icon-background-circle {
+    height: 150px;
+    width: 150px;
+  }
+  .game-icon {
+    padding: 5px;
+    margin: 5px;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  #skill-tree {
+    grid-template-columns: 1fr 1fr;
   }
 }
