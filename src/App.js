@@ -9,6 +9,7 @@ import Login from './components/Login'
 import Question from './components/Question'
 import Home from './components/Home/Home'
 import Leaderboard from './components/Home/Leaderboard'
+import About from './components/About'
 import { NoMatch } from './components/NoMatch'
 
 import { getCurrentUser } from './store/reducers/currentUser'
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/about" component={About} />
             <Route path="/questions/:levelId" component={Question} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route component={NoMatch} />

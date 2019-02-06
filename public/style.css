@@ -287,6 +287,35 @@ nav div {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* About Page */
+.about {
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px 50px;
+}
+
+.about-images {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+.about-pic:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.about-pic {
+  border-radius: 50%;
+  padding: 5px;
+  width: 150px;
+  height: 150px;
+  top: 0px;
+}
+
 /* LOGIN/SIGNUP PAGE */
 
 .form {

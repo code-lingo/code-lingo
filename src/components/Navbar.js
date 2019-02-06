@@ -32,6 +32,9 @@ export class Navbar extends Component {
         </div>
         {!this.props.currentUser ? (
           <div>
+            <NavLink className="navbar-item" to={'/about'}>
+              <h2>About</h2>
+            </NavLink>
             <NavLink className="navbar-item" to={'/login'}>
               <h2>Login</h2>
             </NavLink>
@@ -41,6 +44,9 @@ export class Navbar extends Component {
           </div>
         ) : (
           <div>
+            <NavLink className="navbar-item" to={'/about'}>
+              <h2>About</h2>
+            </NavLink>
             <NavLink to="/login" className="navbar-item">
               <h2 onClick={this.handleSignOut.bind(this)}>SignOut</h2>
             </NavLink>
