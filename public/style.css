@@ -34,9 +34,6 @@ ul {
   list-style: none;
 }
 
-.game-icon {
-  width: 100px;
-}
 
 /* MODULAR STYLE PROPERTIES */
 
@@ -139,9 +136,40 @@ nav div {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   text-align: center;
   /* padding: 15px 55px; */
+
+}
+
+.level-selector h3 {
+  padding-top: 10px;
+}
+
+
+.game-icon {
+  width: 70%;
+  height: 70%;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+  /* margin: 15px; */
+  padding: 15px;
+}
+
+.icon-background-circle {
+  background: #bcb5faad;
+  border-radius: 150px;
+  height: 150px;
+  width: 150px;
+  /* border: 2px solid black; */
+  /* border: 1px solid orange; */
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.icon-background-circle:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* SIDE PANEL */
@@ -453,6 +481,3 @@ nav div {
     grid-template-columns: 1fr;
   }
 }
-
-
-
