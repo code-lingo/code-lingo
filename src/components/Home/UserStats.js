@@ -26,18 +26,18 @@ class UserStats extends Component {
 
     return (
       <div id="user-score" className="card">
-        <h1 className="card-header">Stats</h1>
+        <h2 className="card-header">Wombat Stats</h2>
         <div className="stats">
-          <h3>Current Level:</h3>
-          <p>{this.props.currentLevel}</p>
+          <h3 style={{ marginRight: '5px' }}>Current Level: </h3>
+          <h3>{this.props.currentLevel}</h3>
         </div>
         <div className="stats">
-          <h3>Total Score:</h3>
-          <p>{this.props.userScore}</p>
+          <h3 style={{ marginRight: '5px' }}>Total Score: </h3>
+          <h3>{this.props.userScore}</h3>
         </div>
         <div className="stats">
-          <h3>Streak:</h3>
-          <p>{this.props.streak}</p>
+          <h3 style={{ marginRight: '5px' }}>Streak: </h3>{' '}
+          <h3> {this.props.streak}</h3>
         </div>
       </div>
     );
