@@ -19,17 +19,29 @@ export const About = () => {
       </p>
       <div className="about-images">
         <a href="https://www.linkedin.com/in/mcraepetrey/">
-          <img id="about" src={'/assets/McRae.png'} alt={'mcrae'} />
+          <img className="about-pic" src={'/assets/McRae.png'} alt={'mcrae'} />
         </a>
 
         <a href="https://www.linkedin.com/in/amanda-gonzalez/">
-          <img id="about" src={'/assets/Amanda.jpeg'} alt={'amanda'} />
+          <img
+            className="about-pic"
+            src={'/assets/Amanda.jpeg'}
+            alt={'amanda'}
+          />
         </a>
         <a href="https://www.linkedin.com/in/camrynpearson/">
-          <img id="about" src={'/assets/camryn.jpeg'} alt={'camryn'} />
+          <img
+            className="about-pic"
+            src={'/assets/camryn.jpeg'}
+            alt={'camryn'}
+          />
         </a>
         <a href="https://www.linkedin.com/in/rhiannalarocque/">
-          <img id="about" src={'/assets/profile.png'} alt={'rhianna'} />
+          <img
+            className="about-pic"
+            src={'/assets/profile.png'}
+            alt={'rhianna'}
+          />
         </a>
       </div>
     </div>
