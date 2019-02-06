@@ -27,17 +27,35 @@ class UserStats extends Component {
     return (
       <div id="user-score" className="card">
         <h2 className="card-header">Wombat Stats</h2>
-        <div className="stats">
-          <h3 style={{ marginRight: '5px' }}>Current Level: </h3>
-          <h3>{this.props.currentLevel}</h3>
-        </div>
-        <div className="stats">
-          <h3 style={{ marginRight: '5px' }}>Total Score: </h3>
-          <h3>{this.props.userScore}</h3>
-        </div>
-        <div className="stats">
-          <h3 style={{ marginRight: '5px' }}>Streak: </h3>{' '}
-          <h3> {this.props.streak}</h3>
+        <div className="stats-container">
+          <div className="stats">
+            <img
+              className="stats-icon"
+              src="/assets/level_crown.png"
+              alt="Star"
+            />
+            <h3 className="stats-text">Level: </h3>
+            <h3 className="stats-text">{this.props.currentLevel}</h3>
+          </div>
+          <div className="stats">
+            <img
+              className="stats-icon"
+              src="/assets/score_star.png"
+              alt="Star"
+            />
+
+            <h3 className="stats-text">Score: </h3>
+            <h3 className="stats-text">{this.props.userScore}</h3>
+          </div>
+          <div className="stats">
+            <img
+              className="stats-icon"
+              src="/assets/streak_flame.png"
+              alt="Star"
+            />
+            <h3 className="stats-text">Streak: </h3>{' '}
+            <h3 className="stats-text"> {this.props.streak}</h3>
+          </div>
         </div>
       </div>
     );

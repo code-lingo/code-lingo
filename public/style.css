@@ -156,16 +156,39 @@ nav div {
 #user-score {
   margin-bottom: 20px;
   text-align: center;
+  /* border: 1px solid orange; */
 }
 
 .stats {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 10px;
+  /* border: 1px solid red; */
+  width: 60%;
+}
+
+.stats-container {
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .stats p {
   margin-left: 5px;
+}
+
+.stats-icon {
+  height: 25px;
+  width: 25px;
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
+.stats-text {
+  line-height: 38px;
+  margin-left: 15px;
 }
 
 #leaderboard {
@@ -365,6 +388,21 @@ nav div {
     margin: 0;
     padding: 0;
   }
+
+  .stats {
+    width: 50%;
+  }
+
+  .stats-icon {
+    height: 45px;
+    width: 45px;
+    margin-bottom: 10px;
+  }
+
+  .stats-text {
+    line-height: 60px;
+  }
+
   #leaderboard {
     margin: 0;
     padding: 0;
