@@ -8,6 +8,7 @@ const MultipleChoice = props => {
   const answers = Object.values(question).filter(a =>
     a.hasOwnProperty('isCorrect')
   )
+  console.log("ANSWERS", answers)
   return (
     <div>
       <div>{question.description}</div>
@@ -15,12 +16,12 @@ const MultipleChoice = props => {
         <Fragment>
           <Highlight language='javascript'>{question.snippet}</Highlight>
           <div className='answer-group'>
-            {answers.map((el, index) => {
+            {answers.map((el) => {
               return (
                 <button
-                  key={index}
-                  className='answer-option'
+                  key={el.id}
                   onClick={() => props.handleChange(el)}
+                  className={"answer-option " + (props.selectedAnswer.val === el.val ? 'active-button' : '')}
                 >
                   {el.val}
                 </button>
@@ -34,10 +35,10 @@ const MultipleChoice = props => {
             return (
               <div key={index}>
                 <button
-                  className='answer-option'
                   onClick={() => props.handleChange(el)}
+                  className={"answer-option " + (props.selectedAnswer.val === el.val ? 'active-button' : '')}
                 >
-                  <Highlight language='javascript'>{el.val}</Highlight>
+                  {el.val}
                 </button>
               </div>
             )
