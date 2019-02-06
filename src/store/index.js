@@ -7,6 +7,7 @@ import { userScore } from './reducers/userScore';
 import { leaderboard } from './reducers/leaderboard';
 import { isAuthorized } from './reducers/isAuthorized';
 import { currentLevel } from './reducers/currentLevel';
+import { streak } from './reducers/streak';
 
 export const rootReducer = combineReducers({
   currentLevelQuestions,
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
   userScore,
   leaderboard,
   isAuthorized,
+  streak,
 });
 
 export default createStore(
