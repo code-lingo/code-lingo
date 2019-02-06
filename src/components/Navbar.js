@@ -12,7 +12,7 @@ export class Navbar extends Component {
       this.props.logOutUser();
       this.props.authorizedUser(false);
     } catch (error) {
-      alert('Something went wrong:', error);
+      console.log('ERROR:', error);
     }
   }
   render() {
