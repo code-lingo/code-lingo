@@ -28,7 +28,8 @@ class Results extends Component {
         {percentage < 0.75 ? (
           <div>
             <img
-              src="https://media.giphy.com/media/wKFY1XaNEainm/giphy.gif"
+              className="results-image"
+              src="https://media.giphy.com/media/yxCB4566VC3HlPyINK/giphy.gif"
               alt="questioning cat"
             />
             <Link className="question-submit" to={`/`}>
