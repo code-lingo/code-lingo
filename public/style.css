@@ -123,7 +123,12 @@ nav div {
 #skill-tree {
   width: 50%;
   margin-right: 5%;
-  padding: 25px 65px;
+  padding: 45px 65px;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 40px;
+  grid-column-gap: 20px;
 }
 
 #skill-tree a {
@@ -136,7 +141,7 @@ nav div {
   flex-direction: column;
   align-content: center;
   text-align: center;
-  padding: 15px;
+  /* padding: 15px 55px; */
 }
 
 /* SIDE PANEL */
@@ -404,6 +409,9 @@ nav div {
   }
   .home {
     background-color: #f5f5ff;
+  }
+  #skill-tree {
+    grid-template-columns: 1fr;
   }
 }
 
