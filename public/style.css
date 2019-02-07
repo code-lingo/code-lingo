@@ -199,6 +199,17 @@ nav div {
   cursor: default;
 }
 
+.disabled-link {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+.disabled-link:hover {
+  pointer-events: none;
+  cursor: default;
+}
+
 /* SIDE PANEL */
 
 #sidebar {
@@ -537,6 +548,11 @@ nav div {
     grid-template-columns: 1fr;
   }
   .icon-background-circle {
+    height: 150px;
+    width: 150px;
+  }
+
+  .disabled-circle {
     height: 150px;
     width: 150px;
   }
