@@ -43,7 +43,10 @@ class Home extends Component {
                 />
               </Link>
             </div>
-            <Link to="/questions/1">
+            <Link
+              to="/questions/1"
+              className={this.props.currentLevel >= 1 ? '' : 'disabled-link'}
+            >
               <h3>Level One</h3>
             </Link>
           </div>
@@ -63,7 +66,10 @@ class Home extends Component {
                 />
               </Link>
             </div>
-            <Link to="/questions/2">
+            <Link
+              to="/questions/2"
+              className={this.props.currentLevel >= 2 ? '' : 'disabled-link'}
+            >
               <h3>Level Two</h3>
             </Link>
           </div>
@@ -83,7 +89,10 @@ class Home extends Component {
                 />
               </Link>
             </div>
-            <Link to="/questions/3">
+            <Link
+              to="/questions/3"
+              className={this.props.currentLevel >= 3 ? '' : 'disabled-link'}
+            >
               <h3>Level Three</h3>
             </Link>
           </div>
@@ -103,7 +112,10 @@ class Home extends Component {
                 />
               </Link>
             </div>
-            <Link to="/questions/4">
+            <Link
+              to="/questions/4"
+              className={this.props.currentLevel >= 4 ? '' : 'disabled-link'}
+            >
               <h3>Level Four</h3>
             </Link>
           </div>
