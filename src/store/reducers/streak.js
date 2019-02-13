@@ -17,7 +17,6 @@ export const fetchCurrentStreak = userId => {
         const data = snapshot.val();
         if (data) {
           const streak = data.streak;
-          console.log('data', data);
           dispatch(getCurrentStreak(streak));
         }
       });
@@ -35,19 +34,14 @@ export const calculateCurrentStreak = userId => {
       await user.once('value', snapshot => {
         const data = snapshot.val();
         if (data) {
-          console.log('data', data);
           const streak = data.streak;
-          console.log('streak ', streak);
           const lastPlayed = data.lastPlayed;
           if (!data.hasOwnProperty('lastPlayed')) {
-            console.log('I do not have a lastPlayed property!');
             const today = new Date();
             user.update({ streak: 1, lastPlayed: JSON.stringify(today) });
           } else {
-            console.log('lastPlayed', lastPlayed);
             const playedYesterday = isYesterday(lastPlayed);
             const playedToday = isToday(lastPlayed);
-            console.log('did I play yesterday?', playedYesterday);
             if (playedYesterday) {
               user.update({ streak: streak + 1 });
             } else if (playedToday) {

@@ -5,9 +5,6 @@ import Highlight from 'react-highlight';
 
 const InfoCard = props => {
   const question = props.question;
-  // const answers = Object.values(question).filter(a =>
-  //   a.hasOwnProperty('isCorrect')
-  // )
 
   return (
     <div className="question">
