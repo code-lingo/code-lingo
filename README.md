@@ -7,7 +7,7 @@ Built over two weeks in a team of four.
 
 Check out our deployed app [here](https://www.codelingoapp.com/login)!
 
-![](https://github.com/code-lingo/code-lingo/blob/master/public/wombot.png)
+![](https://github.com/code-lingo/code-lingo/blob/master/public/codelingo.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
