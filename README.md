@@ -2,7 +2,7 @@
 
 A mobile-optimized app for learning to code, inspired by Duolingo.<br>
 
-Built with React, Redux & Firebaseover two weeks by a team of four:<br>
+Built with React, Redux & Firebase over two weeks by a team of four:<br>
 
 [Amanda Gonzalez](https://github.com/Amagonzalez27)<br>
 [Camryn Pearson](https://github.com/camrynobscura)<br>
@@ -10,6 +10,8 @@ Built with React, Redux & Firebaseover two weeks by a team of four:<br>
 [Rhianna Larocque](https://github.com/rhiannamrl)
 
 Check out our deployed app [here](https://www.codelingoapp.com/login)!
+
+<!-- logo image coming soon! -->
 
 ![]()
 
