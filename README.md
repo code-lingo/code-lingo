@@ -1,13 +1,17 @@
 ## Codelingo
 
 A mobile-optimized app for learning to code, inspired by Duolingo.
+React - Redux - Firebase
+Built over two weeks in a team of four:
 
-Built over two weeks in a team of four.
-∙ React - Redux - Firebase
+[Amanda Gonzalez](https://github.com/Amagonzalez27)
+[Camryn Pearson](https://github.com/camrynobscura)
+[McRae Petrey](https://github.com/max-deathray)
+[Rhianna Larocque](https://github.com/rhiannamrl)
 
 Check out our deployed app [here](https://www.codelingoapp.com/login)!
 
-![](https://github.com/code-lingo/code-lingo/blob/master/public/codelingo.png)
+![]()
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
