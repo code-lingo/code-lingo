@@ -1,9 +1,4 @@
-import React from 'react'
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faLinkedin, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-
-// library.add(faLinkedin, faLinkedinIn)
+import React from 'react';
 
 export const About = () => {
   return (
@@ -11,7 +6,6 @@ export const About = () => {
       <h1 id="title h1">
         <h3>Welcome to Codelingo!</h3>
       </h1>
-      {/* <FontAwesomeIcon icon="linkedin" /> */}
 
       <p id="">
         Codelingo is an app for learning how to code with Javascript. Made for
@@ -45,7 +39,7 @@ export const About = () => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;

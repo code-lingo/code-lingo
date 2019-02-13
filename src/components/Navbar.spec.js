@@ -51,7 +51,10 @@ describe('Signout', () => {
     const instance = wrapper.instance();
     const handleSignOutSpy = sinon.spy(instance, 'handleSignOut');
     instance.forceUpdate();
-    wrapper.find('h2').simulate('click');
+    wrapper
+      .find('h2')
+      .childAt(1)
+      .simulate('click');
     sinon.assert.calledOnce(handleSignOutSpy);
   });
 });

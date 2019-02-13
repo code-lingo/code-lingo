@@ -20,10 +20,9 @@ class Question extends Component {
   }
 
   componentDidMount() {
-    // grab the level from the URL
     const levelId = this.props.match.params.levelId;
     NProgress.start();
-    this.props.getQuestions(levelId);
+    this.props.fetchLevelQuestions(levelId);
     NProgress.done();
   }
 
@@ -94,10 +93,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getQuestions: level => dispatch(fetchLevelQuestions(level)),
-  };
+const mapDispatchToProps = {
+  fetchLevelQuestions,
 };
 
 export default connect(

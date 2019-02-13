@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
-import loggingMiddleware from 'redux-logger';
+// import loggingMiddleware from 'redux-logger';
 import { currentLevelQuestions } from './reducers/currentLevelQuestions';
 import { currentUser } from './reducers/currentUser';
 import { userScore } from './reducers/userScore';
@@ -19,7 +19,4 @@ export const rootReducer = combineReducers({
   streak,
 });
 
-export default createStore(
-  rootReducer,
-  applyMiddleware(ThunkMiddleware, loggingMiddleware)
-);
+export default createStore(rootReducer, applyMiddleware(ThunkMiddleware));

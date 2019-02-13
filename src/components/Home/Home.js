@@ -9,18 +9,16 @@ class Home extends Component {
     const userId = this.props.currentUser;
 
     if (userId) {
-      this.props.getLevel(userId);
+      this.props.fetchCurrentLevel(userId);
     }
   }
 
   componentDidUpdate() {
     const userId = this.props.currentUser;
-    this.props.getLevel(userId);
+    this.props.fetchCurrentLevel(userId);
   }
 
   render() {
-    console.log('current level is', this.props.currentLevel);
-
     if (!this.props.currentUser && this.props.isAuthorized === false) {
       return <Redirect to="/login" />;
     }
@@ -134,10 +132,8 @@ const mapToState = state => ({
   currentLevel: state.currentLevel,
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getLevel: user => dispatch(fetchCurrentLevel(user)),
-  };
+const mapDispatchToProps = {
+  fetchCurrentLevel,
 };
 
 export default connect(

@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: 1px solid red; */
 }
 
 html {
@@ -38,8 +37,6 @@ ul {
 
 .card {
   border-radius: 6px;
-  /* border: 1px solid #433f663b; */
-  /* box-shadow: 1px 3px 3px rgba(141, 141, 141, 0.868); */
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 5px 5px 0 rgba(0, 0, 0, 0.04);
   background-color: rgba(255, 255, 255, 0.7);
   height: 100%;
@@ -47,10 +44,7 @@ ul {
 
 .card-header {
   text-decoration: underline;
-  /* color: #433f66; */
   margin-bottom: 16px;
-  /* padding-bottom: 3px; */
-  /* border-bottom: 2px solid black; */
 }
 
 .border-top {
@@ -118,8 +112,6 @@ nav div {
   display: flex;
   justify-content: center;
   padding: 3%;
-  /* background: linear-gradient(#bcb5fa, #433f66); */
-  /* background:  #ddd; */
 
   min-height: 100vh;
 }
@@ -130,7 +122,6 @@ nav div {
   width: 50%;
   margin-right: 5%;
   padding: 45px 85px;
-  /* border: 1px solid red; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-row-gap: 40px;
@@ -147,7 +138,6 @@ nav div {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* padding: 15px 55px; */
 }
 
 .level-selector h3 {
@@ -162,8 +152,6 @@ nav div {
   margin: 30px auto;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
-  /* margin: 15px; */
   padding: 20px;
 }
 
@@ -172,8 +160,6 @@ nav div {
   border-radius: 150px;
   height: 250px;
   width: 250px;
-  /* border: 2px solid black; */
-  /* border: 1px solid orange; */
   box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -186,8 +172,6 @@ nav div {
   border-radius: 150px;
   height: 250px;
   width: 250px;
-  /* border: 2px solid black; */
-  /* border: 1px solid orange; */
   box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
   opacity: 0.4;
   pointer-events: none;
@@ -227,19 +211,16 @@ nav div {
 #user-score {
   margin-bottom: 20px;
   text-align: center;
-  /* border: 1px solid orange; */
 }
 
 .stats {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 10px;
-  /* border: 1px solid red; */
   width: 60%;
 }
 
 .stats-container {
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -267,12 +248,6 @@ nav div {
   text-align: center;
 }
 
-/* #leaderboard-table tr {
-  border: 1px solid #ddd;
-  padding: 3px 10px;
-  background-color: red;
-} */
-
 #leaderboard-table {
   border-collapse: collapse;
   width: 100%;
@@ -281,7 +256,6 @@ nav div {
 
 #leaderboard-table td,
 #leaderboard-table th {
-  /* border: 1px solid rgba(214, 214, 223, 0.24); */
   padding: 8px 20px;
 }
 
@@ -293,8 +267,6 @@ nav div {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  /* background-color: #433F66; */
-  /* color: white; */
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -333,7 +305,6 @@ nav div {
   max-width: 500px;
   margin: 30px auto;
   padding: 30px 50px;
-  /* text-align: center; */
 }
 
 .form input {
@@ -366,7 +337,6 @@ nav div {
 .form-message p {
   text-align: center;
   margin-top: 16px;
-  /* text-decoration: underline; */
 }
 
 /* QUESTIONS */
@@ -397,15 +367,11 @@ nav div {
 
 .answer-option {
   width: 80%;
-  /* text-transform: uppercase; */
   font-weight: 700;
-  /* background: #bcb5fa; */
   border: 2px solid #e9e8f7;
   background-color: #e9e8f7;
   width: 100%;
-  /* border: 0; */
   padding: 15px;
-  /* color: #FFFFFF; */
   font-size: 16px;
   cursor: pointer;
   border-radius: 6px;
@@ -435,10 +401,8 @@ nav div {
 }
 
 .reveal-info {
-  /* border: 1px solid #444; */
   color: white;
   background-color: #433f66;
-  /* font-size: 15px; */
   margin-top: 5px;
   padding: 10px;
 }
@@ -458,7 +422,6 @@ nav div {
   height: 100%;
   border-radius: 16px;
   transition: width 0.2s ease-in;
-  /* padding-bottom: 10px; */
 }
 
 .results-image {
@@ -478,7 +441,6 @@ nav div {
     padding-bottom: 5px;
   }
   .card {
-    /* border: 1px solid #433f663b; */
     border: none;
     box-shadow: none;
     background-color: rgba(255, 255, 255, 0.9);
@@ -532,9 +494,7 @@ nav div {
   #leaderboard-table tr {
     font-size: 16px;
   }
-  /* .card {
-    border-radius: 0;
-  } */
+
   .question {
     margin: 30px auto 0 auto;
   }
